@@ -1,5 +1,5 @@
 # 类定义  
-<img src="../../Pic/C-Lang/cpp-classes-define.png" style="width:400px;padding:10px;"/>
+<img src="../../Pic/C-Lang/C++/cpp-classes-define.png" style="width:400px;padding:10px;"/>
 
 成员函数可以定义在类定义内部，或者单独使用范围解析运算符 :: 来定义\
 类定义内部的类成员函数是文件内部作用域(默认为inline)，类定义外部的有全局作用域\
@@ -191,7 +191,7 @@ class printData
 可以重定义或重载大部分C++内置运算符，不可以改变语法结构、操作数个数、优先级、结合性\
 重载运算符是有特殊名称的函数，函数名由关键字operator和其后的运算符构成的\
 与其他函数一样，重载运算符有一个返回类型和一个参数列表\
-<img src="../../Pic/C-Lang/overload-type.jpg" style="width:480px;padding:10px;"/>
+<img src="../../Pic/C-Lang/C++/overload-type.jpg" style="width:480px;padding:10px;"/>
 
 ````
 class Symbol{
