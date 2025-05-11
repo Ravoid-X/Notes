@@ -29,7 +29,7 @@
 6. 半结构化数据模型（semistructure data model）
 
 ## 结构
-<img src="../../../Pic/Tools/Database/MySQL/mysql-structure.png" style="width:500px;padding:10px;"/>
+<img src="../../Pic/Tools/MySQL/mysql-structure.png" style="width:500px;padding:10px;"/>
 
 1. 连接层\
 是一些客户端和链接服务，主要完成一些类似于连接处理、授权认证、及相关的安全方案。服务器也会为安全接入的每个客户端验证它所具有的操作权限。

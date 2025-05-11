@@ -1,12 +1,12 @@
 ## 数值
-<img src="../../../Pic/Tools/Database/MySQL/mysql-data-numeric.png" style="width:900px;padding:10px;"/>
+<img src="../../Pic/Tools/MySQL/mysql-data-numeric.png" style="width:900px;padding:10px;"/>
 
 1. INT(11) 中的数字只是规定了交互工具显示字符的个数，对于存储和计算来说是没有意义的。
 2. DECIMAL 为高精度小数类型。CPU 原生不支持 DECIMAl 类型的计算，计算 DECIMAl 比浮点类型需要更高的代价。
 3. FLOAT、DOUBLE 和 DECIMAL 都可以指定列宽，例如 DECIMAL(18, 9) 表示总共 18 位，取 9 位存储小数部分，剩下 9 位存储整数部分。
 
 ## 日期和时间
-<img src="../../../Pic/Tools/Database/MySQL/mysql-data-time.png" style="width:900px;padding:10px;"/>
+<img src="../../Pic/Tools/MySQL/mysql-data-time.png" style="width:900px;padding:10px;"/>
 
 1. DATETIME：能够保存从 1001 年到 9999 年的日期和时间，精度为秒，使用 8 字节的存储空间，与时区无关。\
 默认情况下，MySQL 以一种可排序的、无歧义的格式显示 DATETIME 值，例如“2008-01-16 22:37:08”
@@ -16,7 +16,7 @@ MySQL 提供了 FROM_UNIXTIME() 函数把 UNIX 时间戳转换为日期，并提
 3. 尽量使用 TIMESTAMP，因为它比 DATETIME 空间效率更高。
 
 ## 字符串
-<img src="../../../Pic/Tools/Database/MySQL/mysql-data-string.png" style="width:900px;padding:10px;"/>
+<img src="../../Pic/Tools/MySQL/mysql-data-string.png" style="width:900px;padding:10px;"/>
 
 1. VARCHAR 这种变长类型能够节省空间，因为只需要存储必要的内容。\
 但是在执行 UPDATE 时可能会使行变得比原来长，当超出一个页所能容纳的大小时，就要执行额外的操作。\

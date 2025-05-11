@@ -12,4 +12,4 @@ redis 自身是一个 Map，其中所有的数据都是采用 key : value 的形
 7. 支持多语言客户端
 ## 数据类型
 指value的类型
-<img src="../../../Pic/Tools/Database/Redis/redis-value-type.png" style="width:800px;padding:10px;"/>
+<img src="../../Pic/Tools/Redis/redis-value-type.png" style="width:800px;padding:10px;"/>

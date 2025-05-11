@@ -1,0 +1,1 @@
+<img src="../../pic/Tools/Hadoop/hdfs-write.png" style="width:500px;padding:10px;"/>
