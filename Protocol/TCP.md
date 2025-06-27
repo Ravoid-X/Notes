@@ -1,5 +1,5 @@
 # 头部格式
-<img src="../Pic/Com/TCP_head_type.jpg" style="width:380px;padding:10px;"/>
+<img src="../Pic/Protocol/TCP_head_type.jpg" style="width:380px;padding:10px;"/>
 
 32位序号：建立连接时，计算机生成的随机数通过SYN包传给接收方，每发送一次数据，就会累加一次这个数据字节数的大小，解决网络包乱序问题\
 32位确认应答号：期望收到对方下一个报文的第一个数据字节的序号,即当前收到消息包的序号+数据字节数+1，解决丢包问题\
@@ -29,13 +29,13 @@
 4. 去重操作:接收的数据会放在操作系统内核的接收缓冲区中，TCP会根据序号检查数据是否在缓冲区中已经存在，存在则丢弃，不存在则存放
 ## 连接管理（三次握手，四次挥手）
 ### 握手
-<img src="../Pic/Com/TCP-3-connect.jpg" style="width:400px;padding:10px;"/>
+<img src="../Pic/Protocol/TCP-3-connect.jpg" style="width:500px;padding:10px;"/>
 
 1. 客户端向服务端发送SYN，申请建立客户端到服务端的连接
 2. 服务端返回ACK（第一次SYN的应答）和SYN，申请建立服务端到客户端的连接
 3. 客户端收到数据，状态置为ESTABLISHED，表示客户端到服务端连接建立完成，并且发送ACK（第二次SYN的应答），服务端收到数据，状态置为ESTABLISHED，表示服务端到客户端的连接建立完成
 ### 挥手
-<img src="../Pic/Com/TCP-4-cut.jpg" style="width:280px;padding:10px;"/>
+<img src="../Pic/Protocol/TCP-4-cut.jpg" style="width:280px;padding:10px;"/>
 
 1. 客户端发送FIN到服务端，申请关闭客户端到服务端的连接
 2. 服务端收到FIN状态置为CLOSE_WAIT，并返回ACK应答（系统实现，TCP协议栈默认执行的）
@@ -58,23 +58,23 @@
    每次发送数据时，拥塞窗口和流量窗口较小的值作为实际发送的窗口，即滑动窗口
 4. 慢启动阈值:当拥塞窗口超过这个阈值，不再按照指数方式增长，而是按照线性方式
    网络拥塞时，拥塞窗口置1，慢启动阈值变为拥塞窗口/2，重新开始增长\
-<img src="../Pic/Com/TCP-block-control.jpg" style="width:450px;padding:10px;"/>
+<img src="../Pic/Protocol/TCP-block-control.jpg" style="width:450px;padding:10px;"/>
 
 # 效率机制
 ## 滑动窗口
 1. 问题：每一个发送的数据都对应有一个ACK确认应答，效率太差
 2. 解决：采用滑动窗口，即一次性发送多个数据\
-<img src="../Pic/Com/TCP-slide-window.jpg" style="width:480px;padding:10px;"/>
+<img src="../Pic/Protocol/TCP-slide-window.jpg" style="width:480px;padding:10px;"/>
 
 ## 高速重发控制
 ### 情况1
 1. 问题：数据已经收到，返回的ACK应答丢包\
-<img src="../Pic/Com/TCP-package-loss1.jpg" style="width:380px;padding:10px;"/>
+<img src="../Pic/Protocol/TCP-package-loss1.jpg" style="width:380px;padding:10px;"/>
 
 2. 解决：部分ACK丢了不要紧，因为可以通过后续的ACK进行确认
 ### 情况2
 1. 问题：发送数据丢包\
-   <img src="../Pic/Com/TCP-package-loss2.jpg" style="width:380px;padding:10px;"/>
+   <img src="../Pic/Protocol/TCP-package-loss2.jpg" style="width:380px;padding:10px;"/>
 
 2. 当1001~2000这段报文丢失后，发送端一直会收到1001这样的ACK\
    发送端主机连续三次收到相同的ACK如1001应答，那发送端主机就会重新发送1001~2000数据\

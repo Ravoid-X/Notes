@@ -35,6 +35,6 @@ $Cov(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y)$
 （4）$Cov(aX+b,Y)=aCov(X,Y)$\
 （5）$Cov(X_1+X_2,Y)=Cov(X_1,Y)+Cov(X_2,Y)$
 3. 相关系数：为 $0$ 则不相关，描述变量间线性相关性\
-$ρ_{XY}=\frac {Cov(X,Y)} {\s qrt {D(X)}\sqrt {D(Y)}}$\
+$ρ_{XY}=\frac {Cov(X,Y)} {\sqrt {D(X)}\sqrt {D(Y)}}$\
 若 $Y=aX+b$，则 $a>0,ρ_{XY}=1;a<0,ρ_{XY}=-1$\
 <img src="../../Pic/Subject/Probability/numerical-table.png" style="width:800px;padding:10px;"/>
