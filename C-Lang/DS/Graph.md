@@ -133,7 +133,16 @@ void showGraph(GraphAdjList &G) {
 	}
 }
 ```
-3. 十字链表\
+3. 邻接数组
+```
+for(unsigned short i=0;i<m;++i){
+	unsigned short u,v;
+	cin>>u>>v;
+	adj[u].push_back(v);
+	adj[v].push_back(u);
+}
+```
+4. 十字链表\
 将邻接表和逆邻接表结合，直接用一个数组表示。\
 <img src="../../Pic/C-Lang/DS/graph-adj-cross-link-list1.png" style="width:400px;padding:10px;"/>
 tailVex 表示该弧的弧尾顶点在顶点数组中的位置，headVex 表示该弧的弧头顶点在顶点数组中的位置。hLink 则表示指向弧头相同的下一条弧，tLink 则表示指向弧尾相同的下一条弧。我们这里定义的是没有箭头的是弧尾，有箭头的是弧头。
@@ -220,7 +229,7 @@ void ShowGraph(OLGraph *G) {
 	}
 }
 ```
-4. 邻接多重表\
+1. 邻接多重表\
 十字链表对于边的改动十分麻烦，就有了邻接多重表。它在十字链表的边集定义上做了一些改动，同时在顶点数组中只用保留一个指针。
 <img src="../../Pic/C-Lang/DS/graph-adj-multi-table1.png" style="width:400px;padding:10px;"/>
 其中 iVex 和 jVex 是与某条边依附的两个顶点在顶点表中的下标。iLink 指向依附顶点 iVex 的下一条边，jLink 指向依附顶点 jVex 的下一条边。

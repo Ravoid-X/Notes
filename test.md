@@ -1,3 +1,4 @@
+<img src="../../pic" style="width:600px;padding:10px;"/>
 ```
 std::stack<Node *> nstack;
 nstack.push(node);
@@ -12,8 +13,6 @@ while(!nstack.empty()){
         nstack.push(temp->left);
     }
 }
-```
-```
 Node *temp=node;
 while(temp||!nstack.empty()){
     if(temp){
@@ -27,8 +26,6 @@ while(temp||!nstack.empty()){
         temp=temp->right;
     }
 }
-```
-```
 std::stack<Node *> nstack1, nstack2;
 nstack1.push(node);
 while (!nstack1.empty()){
@@ -45,4 +42,16 @@ while(!nstack2.empty())
     std::cout<<nstack2.top()->value;
     nstack2.pop();
 }
+std::queue<Node *> qnodes;
+    qnodes.push(node);
+    while(!qnodes.empty()){
+        Node * temp=qnodes.front();
+        std::cout<<temp->value;
+        qnodes.pop();
+        if(temp->left){
+            qnodes.push(temp->left);
+        }
+        if(temp->right){
+            qnodes.push(temp->right);
+        }}
 ```

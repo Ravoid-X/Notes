@@ -31,3 +31,4 @@ while (getline(cin, str1)) {
 }
 ```
 ## Output
+1. 使用'\n'而不是endl，因为 '\n' 只是输出一个换行符，而 endl 则执行输出换行符和刷新输出流（flush）两个操作

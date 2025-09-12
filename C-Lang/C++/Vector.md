@@ -49,43 +49,15 @@ sort(v1.begin(),v1.end());
 sort(v2.begin(),v2.end());   
 set_union(v1.begin(),v1.end(),v2.begin(),v2.end(),back_inserter(v));
 ```
-## List
-``#include <list> ``
-随机存取效率底下，可以高效执行任意地方的插入和删除操作。
-1. 创建
+7. 排序
 ```
-list<int> a; // 定义一个int类型的列表a
-list<int> a(10); // 定义一个int类型的列表a，并设置初始大小为10
-list<int> a(10, 1); // 定义一个int类型的列表a，并设置初始大小为10且初始值都为1
-list<int> b(a); // 定义并用列表a初始化列表b
-deque<int> b(a.begin(), ++a.end());// 将列表a中的第1个元素作为列表b的初始值
-int n[] = { 1, 2, 3, 4, 5 };
-list<int> a(n, n + 5);
+#include <algorithm>
+sort(v.begin(), v.end()); //从小到大
+sort(v.begin(), v.end(),greater<int>()); //从大到小
+sort(v.begin(), v.end(),[](const vector<int>&a,const vector<int>&b){return a[1]<b[1];}); //二维
+bool cmp(vector<int>&a,vector<int>&b){
+    if(a[0]!=b[0]) return a[0]<b[0];
+    else return a[1]>b[1];
+ }//第一列升序排序，如何第一列相同时，按照第二列降序排序
+sort(v.begin(),v.end(),cmp);
 ```
-2. 容量
-```
-lst.max_size(); //容器最大容量
-lst.resize();   //更改容器大小
-lst.empty();    //容器判空
-```
-3. 添加
-```
-lst.push_front(const T& x); //头部添加
-lst.push_back(const T& x);  //末尾添加
-lst.insert(iterator it, const T& x);  //任意位置插入
-lst.insert(iterator it, int n, const T& x); //任意位置插入 n 个相同元素
-lst.insert(iterator it, iterator first, iterator last); //插入另一个向量的 [first,last] 间的数据
-```
-4. 查找
-```
-list<int>::iterator it = find(lst.begin(), lst.end(), 10); 
-lst.front();
-lst.back();
-```
-5. 删除
-```
-lst.pop_front();  //头部删除
-lst.pop_back();   //末尾删除
-lst.erase(iterator it);  //任意位置删除
-lst.erase(iterator first, iterator last); //区间删除
-``` 

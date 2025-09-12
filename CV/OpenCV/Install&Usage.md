@@ -9,11 +9,11 @@ https://opencv.org/releases/
 如果报找不到编译器的错误,可以选择第二个单选框 Specify native compilers 手动选择编译器路径
 
 3. 配置后再次点击 configure\
-（1）填入Release会编译发行版本的opencv包，从而去除debug信息和符号表，这可以提高性能；填入Debug则会编译debug版本的opencv，适合需要修改opencv源码的情况\
+（1）填入 Release 会编译发行版本的 opencv 包，从而去除 debug 信息和符号表，这可以提高性能；填入 Debug 则会编译 debug 版本的 opencv，适合需要修改 opencv 源码的情况\
 <img src="../../pic/CV/OpenCV/mingw-build-configure1.png" style="width:500px;padding:10px;"/> \
 （2）会使得生成的链接库为一个包而不是多个\
 <img src="../../pic/CV/OpenCV/mingw-build-configure2.png" style="width:500px;padding:10px;"/> \
-（3）会生成一个pkg-config的路径使得pkgconfig能够自动传递库路径给g++进行编译\
+（3）会生成一个 pkg-config 的路径使得 pkgconfig 能够自动传递库路径给 g++ 进行编译\
 <img src="../../pic/CV/OpenCV/mingw-build-configure3.png" style="width:500px;padding:10px;"/> 
 
 4. 点击 Generate
