@@ -8,11 +8,11 @@
 ### 程序
 ```
 vector<vector<int>> visited(n, vector<int>(m, 0));
-    queue<pair<int,int>> q;
-    q.push(make_pair(0, 0));
-    visited[0][0] = 1;
-    const int dx[4] = {1, -1, 0, 0};
-    const int dy[4] = {0, 0, 1, -1};
+queue<pair<int,int>> q;
+q.push(make_pair(0, 0));
+visited[0][0] = 1;
+const int dx[4] = {1, -1, 0, 0};
+const int dy[4] = {0, 0, 1, -1};
 while (!q.empty()) {
     pair<int,int> cur = q.front();
     q.pop();

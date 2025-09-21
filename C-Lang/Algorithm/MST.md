@@ -42,5 +42,39 @@ for (auto& e:edges){
 6. 时间复杂度 O(mlogn)，更适合稠密图
 ### Prim 程序
 ```
-
+struct edge{
+    int u,v,w,id;
+    bool operator>(const edge& other) const {return w > other.w;}
+};
+vector<edge> edges(m+1);
+vector<vector<pair<int, int>>> adj(n+1);
+vector<bool> is_in(n+1,false);
+for(int i=1;i<=m;++i){
+    int u,v,w;
+    cin>>u>>v>>w;
+    adj[u].push_back({v,i});
+    adj[v].push_back({u,i});
+    edges[i]={u,v,w,i};
+}
+priority_queue<edge, vector<edge>, greater<edge>> pq;
+vector<int> mst_edges;
+ll w_sum=0;
+int nd_sum=1;
+is_in[1]=true;
+for(const auto& a:adj[1]){
+    pq.push(edges[a.second]);
+}
+while(nd_sum<n&&!pq.empty()){
+    edge cur = pq.top();
+    pq.pop();
+    if(is_in[cur.u]&&is_in[cur.v]) continue;
+    int nd_new=is_in[cur.u]?cur.v:cur.u;
+    w_sum+=cur.w;
+    ++nd_sum;
+    is_in[nd_new]=true;
+    mst_edges.push_back(cur.id);
+    for(const auto& a:adj[nd_new]){
+        pq.push(edges[a.second]);
+    }
+}
 ```

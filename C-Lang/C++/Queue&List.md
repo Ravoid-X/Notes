@@ -32,6 +32,17 @@ struct cmp{
     }
 }; //升序
 priority_queue<node,vector<node>,cmp> a;
+struct{
+    XXXX
+    bool operator>(const edge& other) cons{        
+        return w > other.w; 
+    }//升序
+    bool operator<(const edge& other) cons{        
+        return w < other.w; 
+    }//降序
+}
+priority_queue<node, vector<node>, greater<node>> pq;//升序
+priority_queue<node> pq;//默认降序
 ```
 ## List
 ``#include <list> ``
