@@ -17,13 +17,13 @@ void build_st() {
     // 递推
     for (int j = 1; (1 << j) <= n; ++j) {
         for (int i = 0; i + (1 << j) <= n; ++i) {
-            st[i][j] = std::min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
+            st[i][j] = min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
         }
     }
 }
 int query(int l, int r) {
     int k = log2(r - l + 1);
-    return std::min(st[l][k], st[r - (1 << k) + 1][k]);
+    return min(st[l][k], st[r - (1 << k) + 1][k]);
 }
 ```
 ## LCA (最近公共祖先)

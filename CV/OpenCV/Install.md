@@ -1,3 +1,4 @@
+# Windows
 官网下载相应版本\
 https://opencv.org/releases/
 ## MinGW编译
@@ -34,4 +35,44 @@ set(OpenCV_DIR  C:/ruanjian/opencv/build/x64/vc16/lib/)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+```
+# Ubuntu
+## 下载
+`wget https://github.com/opencv/opencv/archive/refs/tags/4.12.0.zip`
+## 安装依赖
+```
+sudo apt-get install build-essential
+sudo apt-get install cmake-gui git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install python3-dev python3-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev
+```
+## 编译
+```
+mkdir -p build && cd build
+cmake ../../opencv412 ..
+make -j16
+sudo make install
+```
+## 配置
+安装路径 `/usr/local/include/opencv4`；库路径 `/usr/local/lib`
+### 添加库路径
+1. `sudo gedit /etc/ld.so.conf.d/opencv.conf`
+2. 添加 `/usr/local/lib`
+### 配置安装路径
+1. 
+```
+sudo ldconfig
+sudo gedit /etc/bash.bashrc
+```
+2. 末尾添加
+```
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opencv4/lib/pkgconfig 
+export PKG_CONFIG_PATH
+```
+3. 更新环境变量\
+`source /etc/bash.bashrc`
+## 测试
+```
+python3
+import cv2
+cv2.__version__
 ```

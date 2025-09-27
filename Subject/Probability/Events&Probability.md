@@ -22,15 +22,18 @@
 （3）可列可加性：若事件互斥，则\
 <img src="../../Pic/Subject/Probability/probability-add.png" style="width:200px;padding:10px;"/>
 
+## 联合概率
+1. 定义：事件 A 和事件 B 同时发生（交集）的概率
+2. $P(AB) = P(A,B) = P(A∩B)$
 ## 条件概率
 1. 定义：已知事件B发生这个条件下，事件A发生的概率称为条件概率 $P(A|B)$（conditional probability）
 2. 计算：\
 <img src="../../Pic/Subject/Probability/probability-conditional-equation.png" style="width:200px;padding:10px;"/>
 
-3. 全概率公式：设样本空间被划分为 $B_1$，$B_2$，……，$B_n$，称其为样本空间的一完备事件组（exhaustive events），则 A 的概率为：\
-&emsp;&emsp;&emsp;$P(A)=\sum ^n _{i=1} P(B_i)P(A|B_i)$
-4. 贝叶斯公式：设样本空间被划分为 $B_1$，$B_2$，……，$B_n$，在 $A$ 发生的条件下某个 $B_i$ 发生的概率 $P(B_i|A)$ 可以用下式表达：\
-&emsp;&emsp;&emsp;$P(B_i|A)=\frac {P(A{B}_{i})} {P(A)}=\frac {P(B_i)P(A|B_i)} {{\sum ^n _{j=1}}P(B_j)P(A|B_i)}$
+1. 全概率公式：设样本空间被划分为 $B_1$，$B_2$，……，$B_n$，称其为样本空间的一完备事件组（exhaustive events），则 A 的概率为：
+$$P(A)=\sum ^n _{i=1} P(B_i)P(A|B_i)$$
+1. 贝叶斯公式：设样本空间被划分为 $B_1$，$B_2$，……，$B_n$，在 $A$ 发生的条件下某个 $B_i$ 发生的概率 $P(B_i|A)$ 可以用下式表达：
+$$P(B_i|A)=\frac {P(A{B}_{i})} {P(A)}=\frac {P(B_i)P(A|B_i)} {{\sum ^n _{j=1}}P(B_j)P(A|B_i)}$$
 
 ## 独立性
 1. 相互独立：两个事件互不影响概率，即 $P(A|B)=P(A)$，$P(AB)=P(A)P(B)$ 

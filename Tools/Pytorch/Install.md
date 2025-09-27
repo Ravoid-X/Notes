@@ -1,14 +1,15 @@
-## Pytorch
-1. 官网下载\
+## 官网下载
 https://pytorch.org/
 <img src="../../pic/Tools/Pytorch/pytorch-version.png" style="width:500px;padding:10px;"/> 
 
-2. 将以下路径添加到系统环境变量\
+# Windows
+## 环境变量
+1. 将以下路径添加到系统环境变量\
 ```
 C:\ruanjian\libtorch\bin
 C:\ruanjian\libtorch\lib
 ```
-3. C++ 库只支持 MVSC 编译
+2. C++ 库只支持 MVSC 编译
 ## CUDA
 1. 查看最高兼容版本\
 <img src="../../pic/Tools/Pytorch/cuda-version.png" style="width:500px;padding:10px;"/> 
@@ -62,3 +63,7 @@ int main(){
 add_library(CUDA::nvToolsExt INTERFACE IMPORTED)
 set_property(TARGET CUDA::nvToolsExt APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${CUDAToolkit_INCLUDE_DIRS}")
 ```
+# Ubuntu
+## 编译
+1. 进入 build 目录
+2. 

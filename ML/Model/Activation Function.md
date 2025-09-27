@@ -6,12 +6,15 @@ $$ S(x) = \frac{1}{1 + e^{-x}} $$
 ### 缺点
 1. 当输入值 x 很大或很小时，函数的导数会趋近于 0，可能引发梯度消失
 2. 输出不是以 0 为中心，这会影响后续层的学习
+
 ## Tanh
 $$ \text{tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} $$
 ### 优点
 1. 输出以 0 为中心，通常收敛速度比 Sigmoid 更快
 ### 缺点
 1. 依然存在梯度消失问题
+
+
 ## ReLU
 $$ \text{ReLU}(x) = \max(0, x) $$
 ### 优点
@@ -19,6 +22,8 @@ $$ \text{ReLU}(x) = \max(0, x) $$
 2. 只需要进行简单的判断和比较，计算速度比 Sigmoid 和 Tanh 快得多
 ### 缺点
 1. 如果一个神经元在训练过程中始终只接收到负数输入，那么它的梯度将永远为 0，导致该神经元不再更新
+
+
 ## Leaky ReLU
 $$ \text{Leaky ReLU}(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha x & \text{if } x \le 0 \end{cases} $$
 $\alpha$ 是一个很小的正数，通常为 0.01

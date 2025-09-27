@@ -1,4 +1,4 @@
-## 引出
+## 引出（pending）
 1. 面对二元分类问题，感知机模型存在根本问题：一旦找到一个能够分离训练数据的超平面，算法就会停止，而这个超平面不一定是最佳的或稳健的。
 2. 引出了支持向量机的核心问题：在所有可能的分离超平面中，哪一个才是最好的？
 ## 概念
@@ -29,16 +29,31 @@ $$y_i(w^T x + b)\ge1$$
 4. 最大化 2d
 $$max\ 2*\frac{|w^T x + b|}{||w||}=2*\frac{y_i(w^T x + b)}{||w||}=\frac 2 {||w||}$$
 再进行转化，同时为了方便计算（去除 $||w||$ 的根号），可得
-$$min \frac {||w||^2}2\quad s.t.\quad y_i(w^T x + b)\ge1$$
+$$min \frac {||w||^2}2\quad s.t.\quad y_i(w^T x + b)\ge1 \tag{1}$$
 5. 这是一个凸二次规划（Convex Quadratic Programming, QP）问题，意味着它存在唯一的全局最优解，并且可以通过有效的算法求解。
 ### 拉格朗日对偶
-1. 对上式使用拉格朗日乘子法可得到其“对偶问题”
-$$L(w, b, \alpha) = \frac{1}{2} ||w||^2 + \sum_{i=1}^{m} \alpha_i (1 - y_i (w^T x_i + b)) \quad (8)$$
+1. 对上式使用拉格朗日乘子法
+$$L(w, b, \alpha) = \frac{1}{2} ||w||^2 + \sum_{i=1}^{m} \alpha_i (1 - y_i (w^T x_i + b)) \quad \tag{2}$$
 令 $L(w,b,α)$ 对 w 和 b 的偏导为零，可得
-$$w = \sum_{i=1}^{m} \alpha_i y_i x_i \quad 0 = \sum_{i=1}^{m} \alpha_i y_i \quad $$
-2. w 代入原式可得
-$$\max_{\alpha} \sum_{i=1}^{m} \alpha_i - \frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha_i \alpha_j y_i y_j x_i^T x_j \quad $$
+$$w = \sum_{i=1}^{m} \alpha_i y_i x_i \quad 0 = \sum_{i=1}^{m} \alpha_i y_i \quad \tag{3}$$
+2. 将式（3）代入式（2）可得其“对偶问题”
+$$\max_{\alpha} \sum_{i=1}^{m} \alpha_i - \frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha_i \alpha_j y_i y_j x_i^T x_j \quad \tag{4}$$
 
 $$s.t. \quad \sum_{i=1}^{m} \alpha_i y_i = 0, \quad \alpha_i \ge 0, \quad i = 1, 2, \dots, m$$
-3. 
-$$f(x) = w^T x + b = \sum_{i=1}^{m} \alpha_i y_i x_i^T x + b \quad$$
+3. 解出 α 后，求出 w 与 b 即可得到模型
+$$f(x) = w^T x + b = \sum_{i=1}^{m} \alpha_i y_i x_i^T x + b \quad\tag{5}$$
+4. $α_i$ 恰对应训练样本 $(x_i,y_i)$。注意约束条件，上述过程需满足KKT（Karush-Kuhn-Tucker）条件，即
+$$
+\begin{cases}
+\alpha_i \ge 0 \\
+y_i f(x_i) - 1 \ge 0 \\
+\alpha_i(y_i f(x_i) - 1) = 0
+\end{cases}\tag{6}
+$$
+5. 于是，对任意训练样本 $(x_i,y_i)$，总有 $α_i=0$ 或 $y_i f(x_i)=1$。\
+（1）若 $α_i=0$，则该样本将不会在式（5）的求和中出现，也就不会对 $f(x)$ 有影响。\
+（2）若 $α_i\neq 0$，则对应的样本点是支持向量。\
+（3）这显示出支持向量机的一个重要性质：训练完成后，大部分的训练样本都不需要保留，最终模型仅与支持向量有关。
+## SMO 算法
+
+## 软间隔
