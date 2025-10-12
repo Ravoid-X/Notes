@@ -1,4 +1,4 @@
-<img src="../../pic" style="width:600px;padding:10px;"/>
+<img src="../../../pic/C-Lang/C++" style="width:600px;padding:10px;"/>
 ```
 std::stack<Node *> nstack;
 nstack.push(node);

@@ -5,9 +5,11 @@ $$ \text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2} $$
 ### 平均绝对误差（MAE）
 $$ \text{MAE} = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i| $$
 ### 决定系数（R-squared, $R ^2$ ）
-$$ R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2} $$
+$$ R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2} =1-\frac {SSE}{SST}$$
 1. 衡量模型对数据变异的解释程度。其值介于0到1之间，越接近1表示模型解释的变异越多，拟合效果越好。
 2. 结果标准化，方便比较不同模型
+3. SST (Total Sum of Squares, 总平方和): 表示数据总的变异程度，即因变量 Y 的总方差。
+4. SSE (Sum of Squared Errors, 残差平方和): 也称为 RSS (Residual Sum of Squares)，表示模型未能解释的变异部分，即预测值与实际值之间的误差平方和。
 ## 分类任务
 <img src="../../pic/ML/Model/model_eva_pr.png" style="width:600px;padding:10px;"/>
 
