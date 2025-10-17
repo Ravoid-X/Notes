@@ -49,9 +49,63 @@ string&& rr3 = getName(); // 正确！
 int&& rr4 = x;              // 错误！右值引用不能绑定到左值 x
 ```
 ### 实现移动语义
-
+```
+A(A&& a) {
+    this->data_ = a.data_;
+    a.data_ = nullptr;
+}
+//move 本身不做任何移动操作，只是一个类型转换
+//将一个左值强制转换为右值引用，从而让它能够匹配移动构造函数或移动赋值运算符
+A b = move(a);
+```
+### 万能引用（转发引用）
+可以接受左值或右值的引用，为了实现完美转发
+```
+template<typename T>
+void func(T&& arg) {
+    \\...
+}
+```
 ### 实现完美转发
+指一个函数模板能够将其接收到的参数，以原始的值类别（左值或右值），原封不动地转发给另一个函数。
+### 问题
+```
+template<typename T>
+void print(T & t){
+    std::cout << "Lvalue ref" << std::endl;
+}
 
+template<typename T>
+void print(T && t){
+    std::cout << "Rvalue ref" << std::endl;
+}
+
+template<typename T>
+void testForward(T && v){ 
+    //虽然 v 是右值，但此时在内存中已有位置，所以其实是左值
+    print(v); 
+    print(forward<T>(v)); 
+    print(move(v)); //永远调用右值版本的print
+}
+
+int main(){
+    int x = 1;
+    testForward(x); //实参为左值
+    testForward(std::move(x)); //实参为右值
+}
+```
+```
+Lvalue ref
+Lvalue ref
+Rvalue ref
+======================
+Lvalue ref
+Rvalue ref
+Rvalue ref
+======================
+```
+左值右值在函数调用时，都转化成了左值，使得函数转调用时无法判断左值和右值。
+### `forward<T>`
 
 ## 常引用
 ### 权限放大：报错
