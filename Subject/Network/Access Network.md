@@ -17,4 +17,3 @@
 1. ONU（Optical Network Unit，光网络单元）：一般直接安装部署到用户家里，常见的有SFU（Single family Unit，单家庭用户单元）和HGU（Home Gateway Unit，家庭网关单元）两种类型。ONU的一端通过光纤连接到分光器，另一端通过有线或无线方式连接家里的终端设备。
 2. ODN（Optical Distribution Network，光分配网络）：通过光纤和分光器为ONU和OLT提供“传输通道”，分光器可以将一路光信号以一定的比例分成多路。
 3. OLT（Optical Line Terminal，光线路终端）：离用户最远，是PON的核心设备，一般安装部署在运营商的机房中，用于将用户数据进行汇总并上送到城域网传输。
-## 
