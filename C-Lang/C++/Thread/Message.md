@@ -1,55 +1,97 @@
-# 消息队列
-1. 定义
-先进先出的队列型数据结构，是系统内核中的一个内部链表，尾添加头读取
-2. 一般结构
-   ````
-    struct msgbuf{
-	   long    mtype;
-	   char	   mtext[1];
-    }
-   ````
-   mtype指定了消息类型，为正整数\
-   引入消息类型后，在逻辑上由一个消息链表转化为多个消息链表。消息依旧写入尾部，但接收时却可以有选择地读取某个特定类型的消息中最接近队列头的一个
-3. 创建
-   ````
-   msgget(key_t key, int msgflg);
-   ````
-   key是关键字,参数key取值IPC_PRIVATE时，函数创建关键字为0的消息队列\
-   UNIX内核要求关键字唯一，但也可以创建多个关键字为0的消息队列\
-   msgflg低9位指定队列属主、属组和其他用户的访问权限，其它位指定消息队列的创建方式\
-   IPC_CREAT：创建，如存在则打开，队列已存在返回其标识号
-   ````
-   msgid = msgget(0x1234, 0666|IPC_CREAT);
-   ````
-   IPC_EXCL：与IPC_CREAT使用，单独使用无意义,队列已存在则报错
-   ````
-   msgid = msgget(0x1234, 0666|IPC_CREAT|IPC_EXCL);
-   ````
-4. 发送
-   ````
-   int msgsnd(int msqid, void *msgp, int msgsz, int msgflg);
-   ````
-   msqid：消息队列标识符\
-   msgp：msgp可以是任何类型的结构体，第一个字段必须为long,表明消息的类型\
-   msgsz：要发送消息的大小，不含消息类型占用的4个字节\
-   msgflg：0：当消息队列满时，msgsnd将会阻塞，直到消息能写进消息队列\
-&emsp;&emsp;&emsp;&emsp;IPC_NOWAIT：队列已满时，msgsnd函数不等待立即返回\
-&emsp;&emsp;&emsp;&emsp;IPC_NOERROR：若消息大于size字节，则截断超出消息不通知发送进程。
-5. 读取
-   ````
-   int msgrcv(int msgid, void *msgp, int msgsz, long msgtyp, int msgflg);
-   ````
-   msgtyp：0：接收第一个消息\
-&emsp;&emsp;&emsp;&emsp;>0：接收类型等于msgtyp的第一个消息\
-&emsp;&emsp;&emsp;&emsp;<0：接收类型等于或者小于msgtyp绝对值的第一个消息\
-   msgflg：0: 阻塞式接收消息，没有该类型的消息msgrcv函数一直阻塞等待\
-&emsp;&emsp;&emsp;&emsp;IPC_NOWAIT：如果没有返回条件的消息调用立即返回，此时错误码为ENOMSG\
-&emsp;&emsp;&emsp;&emsp;IPC_EXCEPT：与msgtype配合使用返回队列中第一个类型不为msgtype的消息\
-&emsp;&emsp;&emsp;&emsp;IPC_NOERROR：若队列中满足条件的消息内容大于size字节，则截断超出消息
-6. 获取属性
-   ````
-   int msgctl(int msqid, int cmd, struct msqid_ds *buf)
-   ````
-   cmd：PC_STAT:获得msgid的消息队列头数据到buf中\
-&emsp;&emsp;&emsp;IPC_SET：设置队列属性，可设置msg_perm.uid、msg_perm.gid、msg_perm.mode、msg_qbytes\
-buf：消息队列管理结构体，存储要设置的属性\
+## 概述
+1. 是一个用于在线程之间安全地传递数据（“消息”）的中间缓冲区。
+2. 作为生产者和消费者之间的桥梁，它必须是线程安全的。
+## 优势
+1. 解耦：生产者和消费者之间没有直接的依赖关系，它们只与消息队列交互。
+2. 异步处理：生产者线程可以将一个耗时的任务（例如，写文件、复杂计算）封装成消息放入队列，然后立即返回，继续执行其他工作。
+3. 缓冲与削峰填谷：当生产者的生产速度和消费者的处理速度不匹配时，消息队列可以起到缓冲作用。
+4. 线程池的任务分发：实现线程池的核心组件。生产者将任务放入队列，池中的多个消费者竞争性地从队列中获取任务并执行。
+## 实现
+1. queue：作为底层的数据结构，用于存储消息，先进先出。
+2. mutex：互斥锁，用于保护 queue，对它的访问（push, pop等）都必须在锁的保护下进行。
+3. condition_variable：条件变量，这是实现高效等待和唤醒的关键。\
+（1）当消费者发现队列为空时，不应该“忙等待”。应该使用条件变量进入睡眠/等待状态，并释放互斥锁，让其他线程可以工作。\
+（2）当生产者向队列中放入一个新消息后，它需要通知正在等待的消费者
+## 示例
+### message.h
+```
+#pragma once
+#include <iostream>
+#include <string>
+#include <queue>
+#include <thread>
+#include <mutex>
+
+struct Message {
+   int id;
+   string content;
+};
+
+class MessageQueue {
+public:
+   MessageQueue() = default;
+   void pushMessage(const Message& msg);
+   // 从 UI 进程接收消息
+   void receiveMessageFromUI(int id, const string& content);
+   // 尝试从队列获取一条消息（非阻塞）
+   bool tryGetMessage(Message& msg_out);
+   bool isEmpty() const;
+private:
+   // 使用 mutable 关键字允许在 const 成员函数中锁定互斥锁
+   mutable mutex m_mutex; 
+   queue<Message> m_queue;
+};
+```
+### message.cpp
+```
+#include "message.h"
+#include <chrono>
+void MessageQueue::pushMessage(const Message& msg) {
+   unique_lock<mutex> lock(m_mutex);
+   m_queue.push(msg);
+}
+
+void MessageQueue::receiveMessageFromUI(int id, const string& content) {
+   Message msg = {id, content};
+   unique_lock<mutex> lock(m_mutex);
+   m_queue.push(msg);
+}
+
+bool MessageQueue::tryGetMessage(Message& msg_out) {
+   unique_lock<mutex> lock(m_mutex);
+   if (m_queue.empty()) {
+      return false;
+   }
+   msg_out = m_queue.front();
+   m_queue.pop();
+   return true;
+}
+
+bool MessageQueue::isEmpty() const {
+   unique_lock<mutex> lock(m_mutex);
+   return m_queue.empty();
+}
+```
+### main.cpp
+```
+#include "message.h"
+#include <vector>
+#include <atomic>
+
+int main() {
+   State state;
+   MessageQueue messageQueue;
+
+   while (true) {
+      Message received_msg;
+      if (messageQueue.tryGetMessage(received_msg)) {
+         state.handleMessage(received_msg);
+      } 
+      // 队列为空，短暂休眠，防止CPU占用过高
+      this_thread::sleep_for(chrono::milliseconds(50));
+   }
+   return 0;
+}
+```
+### 编译
+必须加上 `-pthread`

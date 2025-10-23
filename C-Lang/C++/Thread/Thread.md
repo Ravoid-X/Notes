@@ -1,100 +1,123 @@
-# lunux 多线程
-C++11 前的库中没有提供和线程相关的类或者接口，编程时 Windows 上需调用 CreateThread 创建线程，Linux下需调用 clone 或者 pthread 线程库的接口函数 pthread_create 来创建线程
-是直接调用了系统相关的API函数，编写的代码无法跨平台编译运行
-1. main 函数所在的线程称为主线程，其余创建的线程称为子线程；在Linux环境下线程的本质仍然是进程
-2. 进程虽然拥有相同的虚拟地址，但页目录、页表、物理页面各不相同，映射到不同的物理页面内存单元，最终访问不同物理页面\
-   两个线程虽然有独立的PCB，但是共享同一个页目录、页表、物理页面，所以两个PCB共享同一个地址空间。
-3. 创建线程
-   ````
-   int pthread_create(pthread_t *thread,const pthread_attr_t *attr,void*(*start_routine)(void*),void *arg);
-   ````
-   thread:指向线程标识符的指针,也可以直接传递某个 pthread_t 类型变量的地址\
-   attr:设置线程的属性，一般使用默认值NULL\
-   start_routine:函数指针,形参和返回值必须为void*,需要先进行强制类型转换，才能访问指针指向的数据\
-   arg:运行函数的唯一传入参数\
-   返回值:成功,0; 失败,返回错误号\
-&emsp;&emsp;&emsp;EAGAIN：系统资源不足，无法提供创建线程所需的资源\
-&emsp;&emsp;&emsp;EINVAL：传递给 pthread_create() 函数的 attr 参数无效\
-&emsp;&emsp;&emsp;EPERM：attr 参数中某些属性的设置为非法操作，程序没有相关的设置权限
-4. 终止线程
-   ````
-   pthread_exit (void *retval) 
-   ````
-   retval指向的数据作为返回值，也可将 retval 参数置为NULL\
-   main() 结束时自动被终止，除非 main() 通过 pthread_exit() 在其之前结束
-   ````
-   int pthread_cancel(pthread_t thread) 
-   ````
-   thread为接收Cancel信号的目标线程，成功发送返回0，否则返回非零数\
-   不是立刻终止,当子线程执行到一个取消点，线程才会终止\
-   若线程没有取消点，可通过pthread_testcancel()设置\
-5. 连接线程
-   ````
-   pthread_join (pthread_t thread,void ** retval) 
-   ````
-   与一个已终止的线程连接,回收资源。返回值：0，成功；非0，失败，返回错误号
-   ````
-   pthread_attr_init(&attr);
-   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-   ````
-   只有创建时定义为可连接的线程才可以被连接\
-   当A线程调用线程B并 pthread_join() 时，A线程会处于阻塞状态\
-   一个线程只能被一个线程所连接,一般在主线程中使用\
-   对detach状态的线程调用pthread_join将返回EINVAL错误
-6. 分离线程
-   ````
-   pthread_detach (pthread_t thread)  
-   ````
-   分离的线程在终止的时候，会自动释放资源返回给系统\
-   不能多次分离，会产生不可预测的行为\
-7. 获取当前的线程的线程ID
-   ````
-   pthread_t pthread_self(void)
-   ````
-8. 比较两个线程ID是否相等
-   ````
-   int pthread_equal(pthread_t t1,pthread_t t2);
-   ````
-   返回值：相等非0，不相等0
-# 互斥锁
-1. 临界区\
-   访问某一共享资源的代码片段，并且这段代码的执行应为原子操作。
-2. 互斥锁特性\
-   确保同时仅有一个线程可以访问某项共享资源，其他线程将遭遇阻塞\
-   试图对已经锁定的某一互斥量再次加锁将可能阻塞线程或者报错失败\
-   所有者才能给互斥量解锁。一般对每一个共享资源会使用不同的互斥量
-3. 初始化互斥量
-   ````
-   int pthread_mutex_init(pthread_mutex_t *restrict mutex, const pthread_mutexattr_t *restrict attr)
-   ````
-   mutex：需初始化的互斥量变量；attr：互斥量相关属性，通常 NULL
-   restrict:C语言的修饰符，被修饰的指针不能由另外一个指针进行操作
-4. 定义互斥量变量
-   ````
-   pthread_mutex_t mutex;
-   ````
-   需为全局变量,不能定义为栈上的临时变量
-5. 销毁锁
-   ````
-   int pthread_mutex_destroy(pthread_mutex_t *mutex);
-   ````
-6. 加锁，阻塞的
-   ````
-   int pthread_mutex_lock(pthread_mutex_t *mutex);
-   ````
-7. 尝试加锁，非阻塞
-   ````
-   int  pthread_mutex_trylock(pthread_mutex_t *mutex);
-   ````
-   如果加锁失败，不会阻塞，会直接返回
-8. 解锁
-   ````
-   int pthread_mutex_unlock(pthread_mutex_t *mutex);
-   ````
-# C11 后多线程
-1. 头文件
-atomic：主要声明了两个类, std::atomic 和 std::atomic_flag，另外还声明了一套 C 风格的原子类型和与 C 兼容的原子操作的函数\
-thread：主要声明了 std::thread 类，另外 std::this_thread 命名空间也在该头文件中\
-mutex：主要声明了与互斥量(mutex)相关的类，包括 std::mutex 系列类，std::lock_guard, std::unique_lock, 以及其他的类型和函数\
-condition_variable：主要声明了与条件变量相关的类，包括std::condition_variable 和 std::condition_variable_any\
-future：主要声明了std::promise,std::package_task两个Provider类，以及std::future和std::shared_future两个Future类，一些与之相关的类型和函数，std::async() 函数就声明在此头文件中
+## 概述
+1. C++11 前的库中没有提供和线程相关的类或者接口，编程时 Windows 上需调用 CreateThread 创建线程，Linux下需调用 clone 或者 pthread 线程库的接口函数 pthread_create 来创建线程。
+2. 是直接调用系统相关的 API 函数，编写的代码无法跨平台编译运行
+3. main 函数所在的线程称为主线程，其余创建的线程称为子线程；在 Linux 环境下线程的本质仍然是进程
+# `#include <thread>`
+## 创建线程
+### 普通函数
+```
+void task() {
+   cout << "Hello from thread!" << endl;
+}
+
+thread t(task); 
+t.join(); // 等待线程 t 执行完毕
+return 0;
+```
+### Lambda 表达式
+```
+thread t([]() {
+   cout << "Hello from lambda thread!" << endl;
+});
+t.join();
+```
+### 函数对象
+当一个类重载了函数调用运算符 () 时，就可以像调用函数一样“调用”这个类的对象，称为函数对象。
+```
+class Task {
+public:
+   void operator()() const {
+      cout << "Hello from functor thread!" << endl;
+   }
+};
+
+Task my_task;
+thread t(my_task);
+t.join();
+```
+### 成员函数
+```
+class MyClass {
+public:
+   void run() {
+      cout << "Hello from member function thread!" << endl;
+   }
+};
+
+MyClass obj;
+// 第一个参数是成员函数指针，第二个参数是对象实例的地址
+thread t(&MyClass::run, &obj);
+t.join();
+```
+## 有参数情况
+### 值传递
+```
+void print_message(const string& message) {
+   cout << message << endl;
+}
+
+string msg = "Hello with arguments!";
+thread t(print_message, msg); // msg 被复制到线程 t
+t.join();
+```
+### 引用传递
+1. 对于只移动类型（如 unique_ptr），需要使用 move
+2. 通过引用传递，必须使用 ref 或 cref，cref具有常量性
+```
+void update_value(int& value) {
+    value = 100;
+}
+int val = 10;
+thread t(update_value, ref(val)); // 传递 val 的引用
+t.join();
+```
+## 生命周期
+### join()
+1. 会阻塞当前调用它的线程（例如 main 线程），直到线程 t 执行完成。
+2. 确保了在程序继续执行或退出前，所有由线程使用的资源都已处理完毕。
+### detach()
+1. 会将线程 t 从 thread 对象中分离出去，使其成为一个“守护线程”在后台独立运行。
+2. 如果主线程退出，所有分离的线程也会被强制终止，可能导致资源未被正确释放。
+## 其他操作
+### 硬件信息查询
+1. 返回一个 unsigned int，表示硬件支持的并发线程数
+2. 通常等于 CPU 的核心数或超线程数
+3. 在某些系统或环境下，可能返回 0，表示无法检测到此信息
+```
+thread::hardware_concurrency();
+```
+### 线程标识
+```
+this_thread::get_id(); // 当前正在执行此代码的线程的 ID
+thread_object_name.get_id(); //该对象所管理的那个线程的 ID
+```
+```
+void foo() {
+    cout << "Hello from foo. My thread ID is: " << this_thread::get_id() << endl;
+}
+
+thread t1(foo);
+thread t2(foo);
+// 打印主线程的 ID
+cout << "Main thread ID is: " << this_thread::get_id() << endl;
+// 打印 t1 和 t2 对象管理的线程的 ID
+cout << "Thread t1's ID is: " << t1.get_id() << endl;
+cout << "Thread t2's ID is: " << t2.get_id() << endl;
+t1.join();
+t2.join();
+```
+### 线程调度
+```
+//让当前线程休眠一段时间
+this_thread::sleep_for(duration); 
+//让当前线程阻塞，直到一个指定的时间点
+this_thread::sleep_until(time_point) 
+//提示调度器可以将 CPU 时间片让给其他线程
+this_thread::yield(); 
+```
+### 对象管理
+```
+//返回一个 bool 值，判断一个线程对象是否是可结合的
+//线程对象创建并关联到一个正在执行的线程后，还没有被 join() 或 detach() 过即 可结合的
+thread_object_name.joinable(); 
+```

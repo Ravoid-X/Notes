@@ -20,15 +20,13 @@ struct Student {
 ## 内存对齐
 ### 举例
 ```
-struct A
-{
+struct A {
     char c1;
     char c2;
     int i;
     double d;
 };
-struct B
-{
+struct B {
     char c1;
     int i;
     char c2;
