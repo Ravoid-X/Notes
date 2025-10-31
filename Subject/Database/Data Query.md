@@ -1,5 +1,5 @@
 # 数据查询流程（pending）
-<img src="../../Pic/Subject/Database/database-data-query-process.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Database/database-data-query-process.png" style="width:400px;padding:10px;"/>
 
 # 客户端管理器
 客户端管理器通过一系列知名的API（JDBC, ODBC, OLE-DB …）提供不同的方式来访问数据库。当连接到数据库时，管理器有以下流程。

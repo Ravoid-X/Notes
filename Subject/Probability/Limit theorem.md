@@ -6,13 +6,13 @@ $$I_A=\begin{cases}
 \end{cases}$$
 2. 马尔可夫不等式\
 对于非负的随机变量 $X$ 和定值 $a$ ，考虑随机事件 $A=\{X≥a\}$，其示性函数如下所示\
-<img src="../../Pic/Subject/Probability/limit-markov.png" style="width:300px;padding:10px;"/>\
+<img src="../../pic/Subject/Probability/limit-markov.png" style="width:300px;padding:10px;"/>\
 可知$I_{X≥a}(X)≤\frac x a$，对该式取数学期望得马尔可夫不等式\
 $I_{X≥a}=P(X≥a)≤\frac {E(X)} a$
 
 3. 切比雪夫不等式\
 于随机变量 $X$，记 $\mu=E(X)$，考虑随机事件 $A=\{|X-\mu|≥a\}$，其示性函数如下所示\
-<img src="../../Pic/Subject/Probability/limit-chebyshev.png" style="width:300px;padding:10px;"/>\
+<img src="../../pic/Subject/Probability/limit-chebyshev.png" style="width:300px;padding:10px;"/>\
 可知$I_{|X-\mu|≥a}(X)≤\frac {(X-\mu)^2} {a^2}$，对该式取数学期望得切比雪夫不等式\
 $I_{|X-\mu|≥a}=P(|X-\mu|≥a)≤\frac {D(X)} {a^2}$
 

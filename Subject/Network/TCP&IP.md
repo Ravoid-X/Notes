@@ -1,22 +1,22 @@
 ## 结构
-<img src="../../Pic/Subject/Network/tcpip-structure.jpg" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-structure.jpg" style="width:400px;padding:10px;"/>
 
 ## 链路层
 处理连接网络的硬件部分。该层既包括操作系统硬件的设备驱动、NIC（网卡）、光纤等物理可见部分，还包括连接器等一切传输媒介。在这一层，数据的传输单位为比特。其主要协议有ARP、RARP等。
 ### 集线器
 1. 多台主机和设备的连接器，把一个端口接收的所有信号向所有端口分发出去。
 2. 一些集线器在分发之前将弱信号重新生成，一些集线器整理信号的时序以提供所有端口间的同步数据通信。\
-<img src="../../Pic/Subject/Network/tcpip-hub.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-hub.png" style="width:400px;padding:10px;"/>
 
 3. MAC（Media Access Control）地址：网络中每台设备都有的唯一的网络标识，长度为 48 位，是由网络设备制造商生产时烧录在网卡的 EPROM。\
 （1）前 24 位（00-16-EA）代表网络硬件制造商的编号\
 （2）后 24 位（AE-3C-40）是该厂家自己分配的，一般表示系列号
 4. A 在发送数据包时，在头部添加地址，B 在收到数据包后，根据头部的目标 MAC 地址信息，判断这个数据包的确是发给自己的，于是便收下，否则丢弃\
-<img src="../../Pic/Subject/Network/tcpip-mac.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-mac.png" style="width:400px;padding:10px;"/>
 
 ### 交换机
 集线器会将消息广播给所有主机，不安全且浪费网络资源，引入交换机，只向目标 MAC 地址指向的那台电脑发送消息\
-<img src="../../Pic/Subject/Network/tcpip-switch.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-switch.png" style="width:400px;padding:10px;"/>
 
 1. 交换机内部维护一张 MAC 地址表，记录着每一个 MAC 地址的设备连接在哪一个端口上。
 2. 消息到达交换机时，通过自维护的 MAC 地址表，得到目标机器的 MAC 地址映射的端口号，直接将消息发送到对应端口
@@ -25,7 +25,7 @@
 
 ### 二层交换机
 随着机器数量越多，交换机的端口也不够了，此时可将多个交换机连接起来\
-<img src="../../Pic/Subject/Network/tcpip-switch-net.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-switch-net.png" style="width:400px;padding:10px;"/>
 
 EFGH在左边交换机中为同一个端口号
 
@@ -38,23 +38,23 @@ EFGH在左边交换机中为同一个端口号
 2. 问题在于连出去的红色网线，后面不知道有多少设备不断连接，使得地址表越来越大。
 3. 红色的网线接入一个新的设备，有自己独立的 MAC 地址，同时能把数据包做一次转发，即为路由器。
 4. 路由器的每一个端口都有独立的 MAC 地址，交换机的 MAC 地址表中，只需要多出一条地址与其端口的映射关系，就可以成功把数据包转交给路由器了。\
-<img src="../../Pic/Subject/Network/tcpip-router.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-router.png" style="width:400px;padding:10px;"/>
 
 5. 使用计算机在网络中进行通信时，每个计算机都需要一个唯一的标识符，这个标识符就是 IP 地址，其可以随时修改。
 
 ### 路由器工作流程
 1. 先给每一台设备加上 IP 地址，数据包除了加上数据链路层的 MAC 地址头部外，还要增加网络层的 IP 地址头部\
-<img src="../../Pic/Subject/Network/tcpip-router-message.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-router-message.png" style="width:400px;padding:10px;"/>
 
 2. 假设网络如下\
-<img src="../../Pic/Subject/Network/tcpip-router-address.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-router-address.png" style="width:400px;padding:10px;"/>
 
 3. 假如 A 给 C 发送数据，A 就需要先转交给路由器，然后再由路由器转交给 C。由于最底层的传输仍然需要依赖以太网，所以数据包是分成两段的
 4. A ~ 路由器的包如下\
-<img src="../../Pic/Subject/Network/tcpip-router-address1.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-router-address1.png" style="width:400px;padding:10px;"/>
 
 5. 路由器到 C 的包如下\
-<img src="../../Pic/Subject/Network/tcpip-router-address2.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-router-address2.png" style="width:400px;padding:10px;"/>
 
 6. A 给 C 发数据包，怎么知道是否要通过路由器转发，需要通过子网。
 7. 如果源 IP 与目的 IP 处于一个子网，直接将包通过交换机发出去；如果不处于一个子网，就交给路由器去处理。

@@ -32,10 +32,51 @@ protected:
 
 在实际使用中，public 继承是最常见和默认的方式，因为保持了基类成员的可访问性。而 protected 和 private 较少使用。
 
-## 成员隐藏
-1. 如果派生类和基类中存在同名的成员，那么基类的成员会被隐藏。
-2. 派生类只能访问自己的成员，而不能直接访问基类的同名成员，需要显示表达。如`Person::_num`
+## 名字隐藏
+### 规则
+1. 如果派生类中声明了一个成员，而该成员与基类中的某个成员同名，那么派生类中的这个成员将会隐藏基类中所有同名的成员
+2. 这种隐藏是不考虑参数列表和返回类型的。只要名字相同，基类的所有同名版本（包括所有重载版本）都会被隐藏
+### 解决
+1. 使用 using 声明
+```
+class Base {
+public:
+    void func() {
+        std::cout << "Base::func()" << std::endl;
+    }
+    void func(int i) {
+        std::cout << "Base::func(int)" << std::endl;
+    }
+};
+class Derived : public Base {
+public:
+    // 将 Base 类中所有名为 func 的成员引入到 Derived 的作用域
+    using Base::func; 
+    // 现在 Derived 的作用域中同时有 3 个，且构成了重载关系
+    // 1. 从 Base 引入的 func()
+    // 2. 从 Base 引入的 func(int)
+    // 3. 自己定义的 func(double)
+    void func(double d) {
+        cout << "Derived::func(double)" << endl;
+    }
+};
 
+int main() {
+    Derived d;
+    d.func(3.14); // 调用 Derived::func(double)
+    d.func(10);   // OK: 调用 Base::func(int)
+    d.func();     // OK: 调用 Base::func()
+}
+```
+2. 使用作用域解析运算符：可以显式地指定调用基类的版本，但比较繁琐
+```
+int main() {
+    Derived d;
+    d.func(3.14);      // 调用 Derived::func(double)
+    d.Base::func(10);  // OK: 显式调用 Base::func(int)
+    d.Base::func();    // OK: 显式调用 Base::func()
+}
+```
 ## 默认成员函数
 1. 派生类的默认（由编译器生成的）特殊成员函数会自动调用其基类的对应成员函数，而不是继承。
 2. 如创建一个派生类对象时，会先调用基类的构造函数来初始化对象中的“基类部分”，然后再执行派生类自己的构造函数来初始化“派生类部分”。

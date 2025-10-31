@@ -1,5 +1,5 @@
 ## 结构 （pending）
-<img src="../../Pic/Subject/Network/osi-structure.jpg" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/osi-structure.jpg" style="width:400px;padding:10px;"/>
 
 ## 物理层
 

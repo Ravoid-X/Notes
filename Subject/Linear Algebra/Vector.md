@@ -27,11 +27,11 @@
 
 ### 范数（norm）
 1. 0-范数：非0元素个数\
-<img src="../../Pic/Subject/Linear Algebra/vector-norm0.png" style="width:250px;padding:10px;"/> 
+<img src="../../pic/Subject/Linear Algebra/vector-norm0.png" style="width:250px;padding:10px;"/> 
 2. 1-范数：各个元素的绝对值之和\
-<img src="../../Pic/Subject/Linear Algebra/vector-norm1.png" style="width:250px;padding:10px;"/> 
+<img src="../../pic/Subject/Linear Algebra/vector-norm1.png" style="width:250px;padding:10px;"/> 
 3. 2-范数：每个元素平方和再平方根\
-<img src="../../Pic/Subject/Linear Algebra/vector-norm2.png" style="width:250px;padding:10px;"/>  
+<img src="../../pic/Subject/Linear Algebra/vector-norm2.png" style="width:250px;padding:10px;"/>  
 
 ## 空间向量
 

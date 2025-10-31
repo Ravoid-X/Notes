@@ -12,7 +12,7 @@ $\bar{v}$ 为特征向量，$λ$ 为特征值。\
 2. 矩阵的行列式等于特征值的积
 
 ## 计算
-<img src="../../Pic/Subject/Linear Algebra/eigen-calcu1.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/eigen-calcu1.png" style="width:400px;padding:10px;"/>
 
 其中 $\left|λE-{A}\right|$ 称为矩阵的特征多项式
 ## 特征分解

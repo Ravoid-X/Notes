@@ -24,7 +24,7 @@
 # 色彩与图像重建
 ## 去马赛克 (Demosaicing / Debayer)
 ### 问题
-每个像素只包含 R、G、B 中的一种颜色信息。
+每个像素只包含 R、G、B 中的一种颜色信息。\
 <img src="../../pic/CV/Camera/isp_raw_image.png" style="width:600px;padding:10px;"/>
 
 ### 操作

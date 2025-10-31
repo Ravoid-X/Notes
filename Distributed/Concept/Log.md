@@ -22,7 +22,7 @@
 3. 从最后一个 “End Check Point” 日志向前找到最近的一个 “Begin Check Point” 日志，并回放该日志之后的所有更新操作日志。
 ## No Undo/No Redo log
 若数据维护在磁盘中，某批更新由若干个更新操作组成，这些更新操作需要原子生效，即要么同时生效，要么都不生效。\
-<img src="../../Pic/Distributed/Concept/log-01.jpg"  style="width:400px;padding:10px;"/>
+<img src="../../pic/Distributed/Concept/log-01.jpg"  style="width:400px;padding:10px;"/>
 
 0/1 目录技术中有两个目录结构，称为目录 0 和 1。另有一个结构称为主记录，记录当前正在使用的目录称为活动目录。目录0 或 1 中记录了各个数据的在日志文件中的位置。0/1 目录的数据更新过程始终在非活动目录上进行，只是在数据生效前，将主记录中的0、1 值反转，从而切换主记录。
 ### 数据更新

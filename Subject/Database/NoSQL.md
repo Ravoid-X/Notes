@@ -2,7 +2,7 @@
 NoSQL（Not Only SQL 的缩写）泛指非关系型的数据库，主要针对的是键值、文档以及图形类型数据存储。并且，NoSQL 数据库天生支持分布式，数据冗余和数据分片等特性，旨在提供可扩展的高可用高性能数据存储解决方案。
 ## 与SQL比较
 NoSQL 数据库或非关系型数据库可以存储关系型数据，它们与关系型数据库的存储方式不同。
-<img src="../../Pic/Subject/Database/database-sql-nosql-compare.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Database/database-sql-nosql-compare.png" style="width:400px;padding:10px;"/>
 
 ## 存储类型
 1. 键值：键值数据库是一种较简单的数据库，其中每个项目都包含键和值。这是极为灵活的 NoSQL 数据库类型，因为应用可以完全控制 value 字段中存储的内容，没有任何限制。Redis 和 DynanoDB 是两款非常流行的键值数据库。

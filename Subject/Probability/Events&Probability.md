@@ -11,7 +11,7 @@
 ## 概率
 给予随机事件A一个数值P(A)，称为概率，来度量其发生的可能性大小。
 1. 古典概型：如果样本空间为有限集，且认为每个基本事件的概率均相等，贼定义事件 A 的概率为\
-<img src="../../Pic/Subject/Probability/probability-classic-model.png" style="width:250px;padding:10px;"/> 
+<img src="../../pic/Subject/Probability/probability-classic-model.png" style="width:250px;padding:10px;"/> 
 
 2. 几何概型
 3. 概率概型：在n次重复实验中，称事件A发生的次数为频数 ${n}_{A}$，定义 $A$ 的频率为 ${f}_{A}=\frac {{n}_{A}} n$
@@ -20,7 +20,7 @@
 （1）非负性：事件A的概率大于等于0\
 （2）正则性：样本空间的概率为1\
 （3）可列可加性：若事件互斥，则\
-<img src="../../Pic/Subject/Probability/probability-add.png" style="width:200px;padding:10px;"/>
+<img src="../../pic/Subject/Probability/probability-add.png" style="width:200px;padding:10px;"/>
 
 ## 联合概率
 1. 定义：事件 A 和事件 B 同时发生（交集）的概率
@@ -28,7 +28,7 @@
 ## 条件概率
 1. 定义：已知事件B发生这个条件下，事件A发生的概率称为条件概率 $P(A|B)$（conditional probability）
 2. 计算：\
-<img src="../../Pic/Subject/Probability/probability-conditional-equation.png" style="width:200px;padding:10px;"/>
+<img src="../../pic/Subject/Probability/probability-conditional-equation.png" style="width:200px;padding:10px;"/>
 
 1. 全概率公式：设样本空间被划分为 $B_1$，$B_2$，……，$B_n$，称其为样本空间的一完备事件组（exhaustive events），则 A 的概率为：
 $$P(A)=\sum ^n _{i=1} P(B_i)P(A|B_i)$$

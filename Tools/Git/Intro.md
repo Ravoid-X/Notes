@@ -15,7 +15,7 @@
 1. 工作区:电脑里能看到的目录
 2. 暂存区：一般存放在.git 目录下的index 文件（.git/index）中
 3. 版本库:即工作区的隐藏目录 .git\
-<img src="../../Pic/Tools/Git/git-command.jpg">
+<img src="../../pic/Tools/Git/git-command.jpg">
 # 基本操作
 1. 当前目录初始化为 Git 仓库\
     ``git init``

@@ -1,22 +1,22 @@
 ## IPv4
 由32位二进制数组成，通常用点分十进制表示，比如192.168.0.1。\
-<img src="../../Pic/Subject/Network/tcpip-ip.png" style="width:600px;padding:10px;"/>
-<img src="../../Pic/Subject/Network/tcpip-ip-structure.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-ip.png" style="width:600px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-ip-structure.png" style="width:400px;padding:10px;"/>
 
 ### 结构
 1. 可以分为两部分，网络号用于表示一个网络，主机号用于表示该网络内的一台主机。
 2. 理论上可以接入 256 台主机，但有两个特殊地址不能分配\
-<img src="../../Pic/Subject/Network/tcpip-ip-limit.png" style="width:500px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-ip-limit.png" style="width:500px;padding:10px;"/>
 
 3. 网络地址：主机号比特全为 0，网络的起始地址，用于表示网络本身。
 4. 广播地址：主机号比特全为 1，是网络的结束地址，用于向网络内的所有主机进行广播。
 
 ### 分类
 1. A 类地址：第一位总是为 0 ，网络号总是 1 字节，主机号总是 3 字节，一般分配给大型网络\
-<img src="../../Pic/Subject/Network/tcpip-ip-type.png" style="width:500px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-ip-type.png" style="width:500px;padding:10px;"/>
 
 2. B 类地址：前两位总是 10 ，网络号总是 2 字节，主机号总是 2 字节，一般分配给中型网络，地址范围：128.0.0.0 ~ 191.255.255.255
-<img src="../../Pic/Subject/Network/tcpip-ip-type.png" style="width:500px;padding:10px;"/>
+<img src="../../pic/Subject/Network/tcpip-ip-type.png" style="width:500px;padding:10px;"/>
 
 3. C 类地址：前三位总是 110 ，网络号总是 3 字节，主机号总是 1 字节，一般分配给小型网络，地址范围：192.0.0.0 ~ 223.255.255.255
 4. D 类地址：前四位总是 1110 ，用于多播通信，地址范围：224.0.0.0 ~ 239.255.255.255

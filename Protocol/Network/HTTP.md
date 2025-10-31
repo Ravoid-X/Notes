@@ -1,16 +1,16 @@
 ## 概述
 全称为“超文本传输协议”，属于应用层协议
-<img src="../../Pic/Protocol/Network/http-example.jpg" style="width:500px;padding:10px;"/>
+<img src="../../pic/Protocol/Network/http-example.jpg" style="width:500px;padding:10px;"/>
 
 ## URI
 1. Uniform Resource Identifier（统一资源标志符），包括 URL 和 URI\
-<img src="../../Pic/Protocol/Network/http-uri.jpg" style="width:300px;padding:10px;"/>
+<img src="../../pic/Protocol/Network/http-uri.jpg" style="width:300px;padding:10px;"/>
 
 2. URL：Universal Resource Locator（统一资源定位符），即网址。在互联网中，URN 使用的非常少，几乎所有的 URI 都是 URL。
 3. URI：Universal Resource Name（统一资源名称），只为资源命名而不指定如何定位资源。
 ### URL格式
 在URL规定格式中，括号包括内容是非必要部分\
-<img src="../../Pic/Protocol/Network/http-url.jpg" style="width:700px;padding:10px;"/>
+<img src="../../pic/Protocol/Network/http-url.jpg" style="width:700px;padding:10px;"/>
 
 1. scheme：协议。常用的协议有 http、https、ftp等，另外 scheme 也常常被称为 protocol。
 2. username，passowrd：用户名和密码，有时候登陆时会显示，现在用到比较少
@@ -27,10 +27,10 @@
 ## HTTP 协议格式
 可以分为两种，HTTP 请求报文格式 和 HTTP 响应报文格式。\
 在浏览器访问 www.baidu.com，使用 F12 -> network 可查看报文\
-<img src="../../Pic/Protocol/Network/http-message.jpg" style="width:700px;padding:10px;"/>
+<img src="../../pic/Protocol/Network/http-message.jpg" style="width:700px;padding:10px;"/>
 
 ## 请求报文格式
-<img src="../../Pic/Protocol/Network/http-message-request.jpg" style="width:700px;padding:10px;"/>
+<img src="../../pic/Protocol/Network/http-message-request.jpg" style="width:700px;padding:10px;"/>
 
 ### 起始行
 1. 版本：报文所使用的 HTTP 版本，格式如：HTTP/<major>.<minor>
@@ -104,4 +104,4 @@ HTTP 首部字段向请求和响应报文中添加了一些附加信息，本质
 HTTP 要传输的内容
 
 ## 响应报文格式
-<img src="../../Pic/Protocol/Network/http-message-respond.jpg"  style="width:400px;padding:10px;"/>
+<img src="../../pic/Protocol/Network/http-message-respond.jpg"  style="width:400px;padding:10px;"/>

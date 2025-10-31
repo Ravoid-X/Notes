@@ -1,5 +1,5 @@
 # 坐标系
-内参、外参和畸变，正是控制以下坐标系之间转换的参数。
+内参、外参和畸变，正是控制以下坐标系之间转换的参数。\
 <img src="../../pic/CV/Camera/coordinate_system.png" style="width:600px;padding:10px;"/>
 
 ## 世界坐标系 (World Coordinate System)

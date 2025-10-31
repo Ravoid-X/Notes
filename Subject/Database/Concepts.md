@@ -1,4 +1,4 @@
-<img src="../../Pic/Subject/Database/database-overview.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Database/database-overview.png" style="width:400px;padding:10px;"/>
 
 ## 核心组件
 1. 进程管理器（process manager）：很多数据库具备进程/线程池。为了实现纳秒级操作，一些现代数据库使用自己的线程而不是操作系统线程。

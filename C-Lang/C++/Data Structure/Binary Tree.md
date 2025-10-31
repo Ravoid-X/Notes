@@ -26,7 +26,7 @@ void inertNode(Node *node,int value){
 }
 ```
 ## 遍历
-1. 前序\
+### 前序
 深度优先的遍历方法，它首先访问根节点，然后递归地访问左子树，最后访问右子树。
 ```
 void preOrder(Node *node){
@@ -57,7 +57,7 @@ void preOrder(Node *node){
 
 }
 ```
-2. 中序\
+### 中序
 首先递归地访问左子树，然后访问根节点，最后访问右子树。
 ```
 void inOrder(Node *node){
@@ -87,7 +87,7 @@ void inOrder(Node *node){
     }
 }
 ```
-3. 后序\
+### 后序
 先递归地访问左子树，然后访问右子树，最后访问根节点。
 ```
 void posOrder(Node *node){
@@ -120,7 +120,7 @@ void posOrder1(Node *node){
     }
 }
 ```
-4. 层序遍历
+### 层序遍历
 广度优先,从根节点开始，逐层访问树中的每个节点。
 ```
 void broadOrder(Node *node){
@@ -143,8 +143,8 @@ void broadOrder(Node *node){
     }
 }
 ```
-## 增删改查
-1. 增
+## 相关操作
+### 增
 ```
 void broadOrder(Node *node){
     if(!node){
@@ -166,7 +166,7 @@ void broadOrder(Node *node){
     }
 }
 ```
-2. 删
+### 删
 ```
 void Remove(BST* &tree, int data)
 {
@@ -197,7 +197,7 @@ void Remove(BST* &tree, int data)
 	}
 }
 ```
-3. 查
+### 查
 ```
 bool isExist(BST* tree, int data)
 {
@@ -211,7 +211,7 @@ bool isExist(BST* tree, int data)
 		isExist(tree->rightChild, data);
 }
 ```
-4. 改
+### 改
 ```
 void change(BST* &tree, int data，int new_data)
 {

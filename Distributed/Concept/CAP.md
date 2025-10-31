@@ -3,7 +3,7 @@
 ### 不可兼得例子
 1. 分区：分布式系统中，不同的节点分布在不同的子网络中，若这些子节点之间出现了网络不通的状态，他们的内部子网络是正常的。整个系统的环境被切分成了若干个孤立的区域，这就是分区。
 2. 假设满足分区容错，有两个分区 N1 和 N2，N1 和 N2 分别有不同的分区存储 D1 和 D2，以及不同的服务 S1 和 S2。\
-<img src="../../Pic/Distributed/Concept/intro-cap.png"  style="width:400px;padding:10px;"/>
+<img src="../../pic/Distributed/Concept/intro-cap.png"  style="width:400px;padding:10px;"/>
 
 3. 场景：用户访问了 N1，修改了 D1 的数据。用户再次访问，请求落在了 N2 。此时 D1 和 D2 的数据不一致。
 4. 保证一致性：此时 D1 和 D2 数据不一致，要保证一致性就不能返回不一致的数据，可用性无法保证。

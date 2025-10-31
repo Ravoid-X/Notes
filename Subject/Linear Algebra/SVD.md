@@ -10,9 +10,9 @@
 （1）$A{A}^{T}$ 是方阵，对其进行特征值分解\
 （2）特征向量（一般称为左奇异向量）组成的 $m\times m$ 矩阵即为V
 3. 奇异值
-<img src="../../Pic/Subject/Linear Algebra/svd-sum-matrix.png" style="width:600px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/svd-sum-matrix.png" style="width:600px;padding:10px;"/>
 
 4. 第二种求奇异值方式\
 特征值矩阵等于奇异值矩阵的平方，通过求出 ${A}^{T}A$ 的特征值取平方根来求奇异值
 ## 实例
-<img src="../../Pic/Subject/Linear Algebra/svd-example.png" style="width:600px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/svd-example.png" style="width:600px;padding:10px;"/>

@@ -1,4 +1,3 @@
-
 ## 最长区间
 ### 问题
 <img src="../../../pic/C-Lang/Algorithm/Data Structure/double_pointer_exp1.png" style="width:600px;padding:10px;"/>

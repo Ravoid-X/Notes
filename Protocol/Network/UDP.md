@@ -12,7 +12,7 @@ UDP用来支持那些需要在计算机之间传输数据的网络应用，包�
 7. 支持一对一、一对多、多对一和多对多的交互通信。
 
 ## 首部格式
-<img src="../../Pic/Protocol/Network/udp-head.png" style="width:500px;padding:10px;"/>
+<img src="../../pic/Protocol/Network/udp-head.png" style="width:500px;padding:10px;"/>
 
 1. 源端口: 占16位、源端口号。在需要对方回信时选用。不需要时可用全0。
 2. 目的端口: 占16位、目的端口号。这在终点交付报文时必须使用。
@@ -24,5 +24,5 @@ UDP用来支持那些需要在计算机之间传输数据的网络应用，包�
 2. 把UDP数据报看成是由许多16位的子串连接起来，若UDP数据报的数据部分不是偶数个字节，则要在数据部分末尾增加一个全零字节（此字节不发送）。
 3. 按照二进制反码计算出这些16位字的和。将此和的二进制反码写入校验和字段。
 4. 在接收方，把收到得UDP数据报加上伪首部（如果不为偶数个字节，还需要补上全零字节）后，按二进制反码计算出这些16位字的和。
-5. 当无差错时其结果全为1,。否则就表明有差错出现，接收方应该丢弃这个UDP数据报。
-<img src="../../Pic/Protocol/Network/udp-check.png" style="width:500px;padding:10px;"/>
+5. 当无差错时其结果全为1,。否则就表明有差错出现，接收方应该丢弃这个UDP数据报。\
+<img src="../../pic/Protocol/Network/udp-check.png" style="width:500px;padding:10px;"/>

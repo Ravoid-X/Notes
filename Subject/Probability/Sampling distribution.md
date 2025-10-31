@@ -7,7 +7,7 @@
 ## 统计图
 1. 箱线图：通过5个数字来描述数据的分布的标准方式，包括最小值，第一四分位数（Q1），中位数，第三四分位数（Q3），最大值。能够明确的展示离群点的信息，同时能够让我们了解数据是否对称，如何分组，及峰度。\
 2. 解释\
-<img src="../../Pic/Subject/Probability/sample-boxplot.png" style="width:400px;padding:10px;"/>\
+<img src="../../pic/Subject/Probability/sample-boxplot.png" style="width:400px;padding:10px;"/>\
 （1）第一个四分位数（Q1 / 25百分位数）：最小数（不是“最小值”）和数据集的中位数之间的中间数\
 （2）第三四分位数（Q3 / 75th Percentile）：数据集的中位数和最大值之间的中间值（不是“最大值”）；\
 （3）四分位间距（IQR）：第25至第75个百分点的距离；\

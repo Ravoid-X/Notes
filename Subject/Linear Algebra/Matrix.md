@@ -1,5 +1,5 @@
 ## 定义 （pending）
-<img src="../../Pic/Subject/Linear Algebra/matrix-definition.png" style="width:250px;padding:10px;"/> 
+<img src="../../pic/Subject/Linear Algebra/matrix-definition.png" style="width:250px;padding:10px;"/> 
 
 ## 类型
 1. 实/复矩阵：储存元素是实数还是负数。
@@ -19,16 +19,16 @@
 （4）α ( A + B ) = α A + α B
 2. 乘法\
 （1）设 $A={({a}_{ij})}_{m\times s}$，$B={({b}_{ij})}_{s\times n}$，则 $C={({c}_{ij})}_{m\times n}$，其中\
-<img src="../../Pic/Subject/Linear Algebra/matrix-multi1.png" style="width:250px;padding:10px;"/> \
+<img src="../../pic/Subject/Linear Algebra/matrix-multi1.png" style="width:250px;padding:10px;"/> \
 （2）结合律：( c A ) B = c ( A B ) = A ( c B )\
 ( A B ) C = A ( B C )\
 （3）无交换律：A B 不一定等于 B A\
 （4）无消去律：A B = 0 不一定 A = 0 或 B = 0\
 &empA ≠ 0 时，A B = A C 不一定 B = C\
 （5）分块对角矩阵\
-<img src="../../Pic/Subject/Linear Algebra/matrix-multi2.png" style="width:250px;padding:10px;"/>\
+<img src="../../pic/Subject/Linear Algebra/matrix-multi2.png" style="width:250px;padding:10px;"/>\
 （6）方阵幂性质 \
-<img src="../../Pic/Subject/Linear Algebra/matrix-multi3.png" style="width:250px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-multi3.png" style="width:250px;padding:10px;"/>
 
 ## 转置矩阵
 把矩阵 $A$ 的行换成同序数的列得到的新矩阵，叫做 $A$ 的转置矩阵，记作 ${A}^{T}$
@@ -37,7 +37,7 @@
 （1）$A$ 的主对角线上元素全为0\
 （2）若A是奇数阶，则 | $A$ | = 0
 3. 分块矩阵\
-<img src="../../Pic/Subject/Linear Algebra/matrix-transpose.png" style="width:250px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-transpose.png" style="width:250px;padding:10px;"/>
 
 4. 性质\
 （1）${({A}^{T})}^{T}=A$\
@@ -48,7 +48,7 @@
 
 ## 伴随矩阵
 1. 定义：行列式 $\left|{A}\right|$ 的各个元素的代数余子式 ${A}_{ij}$ 构成的矩阵成为 $A$ 的伴随矩阵\
-<img src="../../Pic/Subject/Linear Algebra/matrix-adjoint1.png" style="width:400px;padding:10px;"/>\
+<img src="../../pic/Subject/Linear Algebra/matrix-adjoint1.png" style="width:400px;padding:10px;"/>\
 ${A}_{ij}$ 为 $\left|{A}\right|$ 中个元素的代数余子式
 
 2. 性质\
@@ -58,9 +58,9 @@ ${A}_{ij}$ 为 $\left|{A}\right|$ 中个元素的代数余子式
 （4）${(cA)}^{*}={c}^{n-1}{A}^{*}$\
 （5）${({A}^{k})}^{*}={({A}^{*})}^{k}$\
 （6）\
-<img src="../../Pic/Subject/Linear Algebra/matrix-adjoint2.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-adjoint2.png" style="width:400px;padding:10px;"/>
 3. 分块对角阵\
-<img src="../../Pic/Subject/Linear Algebra/matrix-adjoint3.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-adjoint3.png" style="width:400px;padding:10px;"/>
 
 ## 逆矩阵
 1. 定义\
@@ -90,17 +90,17 @@ ${A}_{ij}$ 为 $\left|{A}\right|$ 中个元素的代数余子式
 ## 相关概念
 ### 迹（trace）
 矩阵对角元的和。因此只有方阵才有迹\
-<img src="../../Pic/Subject/Linear Algebra/matrix-trace.png" style="width:300px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-trace.png" style="width:300px;padding:10px;"/>
 
 ### 秩（rank）
 列秩是 $A$ 的线性无关的纵列的极大数目。类似地，行秩是 A 的线性无关的横行的极大数目。列秩和行秩总是相等的，通常表示为 $r(A)$
 ### 范数
 1. 1-范数：矩阵的列向量的和的最大值\
-<img src="../../Pic/Subject/Linear Algebra/matrix-norm1.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-norm1.png" style="width:400px;padding:10px;"/>
 
 2. 2-范数：${A}^{T}A$ 矩阵的最大特征值的开平方\
-<img src="../../Pic/Subject/Linear Algebra/matrix-norm2.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-norm2.png" style="width:400px;padding:10px;"/>
 
 ### 矩阵多项式
-<img src="../../Pic/Subject/Linear Algebra/matrix-polynomial.png" style="width:400px;padding:10px;"/>
-<img src="../../Pic/Subject/Linear Algebra/matrix-polynomial2.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-polynomial.png" style="width:400px;padding:10px;"/>
+<img src="../../pic/Subject/Linear Algebra/matrix-polynomial2.png" style="width:400px;padding:10px;"/>
