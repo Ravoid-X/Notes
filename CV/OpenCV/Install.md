@@ -65,14 +65,31 @@ sudo gedit /etc/bash.bashrc
 ```
 2. 末尾添加
 ```
-PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opencv4/lib/pkgconfig 
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/cmake/opencv4
 export PKG_CONFIG_PATH
 ```
-3. 更新环境变量\
+3. 更新环境变量
 `source /etc/bash.bashrc`
 ## 测试
 ```
 python3
 import cv2
 cv2.__version__
+```
+## CMakeLists 配置
+```
+if(USE_OPENCV)
+    message(STATUS "COMMON: OpenCV is ENABLED")
+    if(WIN32)
+        set(OpenCV_DIR "C:/ruanjian/opencv/build")
+    elseif(UNIX AND NOT APPLE)
+        set(OpenCV_DIR "/usr/local/lib/cmake/opencv4")
+    endif()
+    find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui)
+    add_compile_definitions(WITH_OPENCV)
+endif()
+...
+if(USE_OPENCV)
+    target_link_libraries(common_lib PUBLIC ${OpenCV_LIBRARIES})
+endif()
 ```

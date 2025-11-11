@@ -30,7 +30,7 @@ gdb -p <PID>
 ## 核心命令
 ### 断点
 1. `break <line_num>`：缩写 `b <line_num>`，在当前文件的第 line_num 行设置断点。
-2. `break <filename>`：缩写 `<line_num>	b file.cpp:10`，在 file.cpp 文件的第 10 行设置断点。
+2. `break <filename> <line_num>`：缩写 `b file.cpp:10`，在 file.cpp 文件的第 10 行设置断点。
 3. `break <function_name>`：缩写 `b main`，在 main 函数的入口处设置断点。
 4. `info breakpoints`：缩写 `i b`，查看当前设置的所有断点及其编号 (Num)。
 5. `delete <Num>`：`d <Num>`，删除编号为 Num 的断点。

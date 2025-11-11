@@ -16,19 +16,22 @@
 2. 另一组则和增量式编码器的输出信息完全相同
 
 ## 旋转编码器原理
+1. 内部大都由码盘、光电检测装置和信号处理电路等部分构成。
+2. 码盘上刻了若干圈线槽，线槽等距并且可透光，旋转时就会周期性的透过和遮挡来自光电检测装置的光线，检测装置就会周期性的生成若干电信号。
+3. 这些电信号通常比较微弱，需要加入一套处理电路对信号进行放大和整形，最后把信号整形为脉冲信号并向外输出。\
 <img src="../../pic/Sensor/Motion/rotary_encoder.png" style="width:600px;padding:10px;"/>
 
-# 增量式编码器
-## 原理
+## 增量式编码器
+### 原理
 <img src="../../pic/Sensor/Motion/incremental_encoder_principle1.png" style="width:600px;padding:10px;"/>
 <img src="../../pic/Sensor/Motion/incremental_encoder_principle2.png" style="width:600px;padding:10px;"/>
 <img src="../../pic/Sensor/Motion/incremental_encoder_principle3.png" style="width:600px;padding:10px;"/>
 
-## 基本参数
+### 基本参数
 
-# 绝对式编码器
-## 原理
+## 绝对式编码器
+### 原理
 <img src="../../pic/Sensor/Motion/absolute_encoder_binary.png" style="width:600px;padding:10px;"/>
 <img src="../../pic/Sensor/Motion/absolute_encoder_graymall.png" style="width:600px;padding:10px;"/>
 
-## 基本参数
+### 基本参数

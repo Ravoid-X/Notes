@@ -1,4 +1,4 @@
-# `std::shared_ptr`(pending)
+# `std::shared_ptr`（pending）
 ## 
 
 

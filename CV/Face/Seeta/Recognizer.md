@@ -1,4 +1,4 @@
-## 概述
+## 概述（pending）
 1. 特征维度：1024维特征向量（可配置为512/2048维）
 2. 网络结构：ResNet改进架构
 3. 损失函数：Triplet Loss + Center Loss组合

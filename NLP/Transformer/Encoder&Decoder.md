@@ -1,4 +1,4 @@
-## 编码器层
+## 编码器层（pending）
 <img src="../../pic/NLP/Transformer/encoders.png" style="width:500px;padding:10px;"/>
 
 1. 自注意力子层：帮助编码器关注句子中的其他词汇，以便更好地编码某个特定词汇。
