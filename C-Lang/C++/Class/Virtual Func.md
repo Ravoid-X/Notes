@@ -23,7 +23,7 @@
 
 ## 使用
 ### 声明
-```
+```C++
 class Base {
 public:
     virtual void foo();
@@ -34,7 +34,7 @@ public:
 2. 名称和参数列表需相同。
 3. 在子类中重写虚函数时，其访问权限不能更严格，否则编译器会报错。
 4. override 关键字虽然可以不加，加上后编译器会检查参数列表。
-```
+```C++
 class Derived : public Base {
 public:
     void foo() override {
@@ -44,7 +44,7 @@ public:
 ```
 
 ## 多继承
-```
+```C++
 class ClassA1
 {
 public:
@@ -93,7 +93,7 @@ public:
 1. 在基类中定义的没有实现的虚函数，让子类必须实现该函数，并且不能直接创建该类对象（抽象类）。
 2. 抽象类是包含纯虚函数的类，不能被实例化，只能被继承。
 3. 如果一个类继承了抽象类，则必须实现所有的纯虚函数，否则该类也会成为抽象类。
-```
+```C++
 class Shape{
 public:
     virtual double getArea() = 0; // 纯虚函数
@@ -111,7 +111,7 @@ public:
 在编译时就确定要调用哪个方法，通常出现在使用类或接口定义对象时。
 ### 动态绑定
 在程序运行时才能确定要调用哪个方法，通常出现在使用子类对象调用父类方法时。
-```
+```C++
 Animal* Ptr; // 定义父类指针
 Ptr = &Cat;  // 指向 Cat 对象
 Ptr->makeSound(); // 运行时动态绑定到 Cat::makeSound()

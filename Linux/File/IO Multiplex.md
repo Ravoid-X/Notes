@@ -6,7 +6,7 @@
 ## select
 最早的、符合 POSIX 标准的多路复用实现
 ### API
-```
+```C
 #include <sys/select.h>
 int select(int nfds, fd_set *readfds, fd_set *writefds,
            fd_set *exceptfds, struct timeval *timeout);
@@ -17,7 +17,7 @@ int select(int nfds, fd_set *readfds, fd_set *writefds,
 4. exceptfds：异常条件的文件描述符集合。
 5. timeout：最长等待时间（NULL表示一直阻塞直到有事件发生）
 ### 宏
-```
+```C
 FD_ZERO(fd_set *set): 清空集合
 FD_SET(int fd, fd_set *set): 将 fd 添加到集合
 FD_CLR(int fd, fd_set *set): 将 fd 从集合中移除
@@ -43,7 +43,7 @@ FD_ISSET(int fd, fd_set *set): 检查 fd 是否在集合中（即是否就绪）
 3. 内核需要 O(n) 遍历所有传入的 FD 来检查就绪状态，用户空间在 select 返回后，也需要 O(n) 遍历来找出是哪些 FD 就绪了
 4. fd_set 是“值-结果”参数，内核会修改它，导致用户每次循环都必须重新构建 fd_set
 ### 代码示例
-```
+```C
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -158,7 +158,7 @@ int main() {
 2. events（输入）和 revents（输出）分离，使得 fds 数组可以被重用
 3. 两次拷贝和两次遍历依旧没有解决
 ### API
-```
+```C
 #include <poll.h>
 int poll(struct pollfd *fds, nfds_t nfds, int timeout);
 struct pollfd {
@@ -178,7 +178,7 @@ struct pollfd {
 8. （用户空间）遍历 fds 数组，检查每个元素的 revents 字段，找出就绪的 FD。
 9. （用户空间）下次循环不需要重新构建数组（fd 和 events 字段不变），但通常需要清空 revents（虽然不清空也行，但检查时要小心）。
 ### 代码示例
-```
+```C
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -270,7 +270,7 @@ int main() {
 1. 抛弃了 select/poll 的被动检查思想，转而采用主动的回调机制
 2. 彻底解决了 select 和 poll 的 O(n) 问题，是实现高性能网络服务器的基石（如 Nginx, Redis）
 ### API
-```
+```C
 #include <sys/epoll.h>
 
 // 1. 创建一个 epoll 实例 (返回一个 epoll fd)
@@ -288,7 +288,7 @@ int epoll_wait(int epfd,          // epoll_create 返回的 fd
                int timeout);      // 超时时间
 ```
 ### 核心数据结构
-```
+```C
 struct epoll_event {
     uint32_t     events;    // 关心的事件 (e.g., EPOLLIN, EPOLLOUT, EPOLLET)
     epoll_data_t data;      // 用户数据 (非常重要)
@@ -335,7 +335,7 @@ typedef union epoll_data {
 1. Linux 独有：可移植性差（BSD 有 kqueue，Windows 有 IOCP，它们原理相似）
 2. API 稍复杂：需要三个函数配合使用
 ### 代码示例
-```
+```C
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

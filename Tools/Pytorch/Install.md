@@ -4,7 +4,7 @@ https://pytorch.org/
 
 # Windows
 ## 环境变量
-1. 将以下路径添加到系统环境变量\
+1. 将以下路径添加到系统环境变量
 ```
 C:\ruanjian\libtorch\bin
 C:\ruanjian\libtorch\lib
@@ -24,7 +24,7 @@ https://developer.nvidia.com/rdp/cudnn-archive
 2. 解压后将对应的文件夹复制到 CUDA 相应文件夹
 ## 测试
 1. CMakeLists.txt
-```
+```CMake
 set(Torch_DIR C:/ruanjian/libtorch/share/cmake/Torch)
 find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
@@ -37,7 +37,7 @@ target_link_libraries(${PROJECT_NAME} ${TORCH_LIBRARIES})
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 ```
 2. main.cpp
-```
+```C++
 #include <iostream>
 #include <torch/torch.h>
 
@@ -57,9 +57,9 @@ int main(){
 <img src="../../pic/Tools/Pytorch/cuda-nvtoolsext-solution1.png" style="width:500px;padding:10px;"/> 
 
 1. 解决方法2：修改 LibTorch 提供的CMake文件\
-找到文件 C:\dev\libtorch\share\cmake\Caffe2\public\cuda.cmake
-```
-在第 59 行 find_package(CUDAToolkit REQUIRED) 之后添加两行内容：
+找到文件 C:\dev\libtorch\share\cmake\Caffe2\public\cuda.cmake，在第 59 行 find_package(CUDAToolkit REQUIRED) 之后添加两行内容
+```CMake
+# ：
 add_library(CUDA::nvToolsExt INTERFACE IMPORTED)
 set_property(TARGET CUDA::nvToolsExt APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${CUDAToolkit_INCLUDE_DIRS}")
 ```

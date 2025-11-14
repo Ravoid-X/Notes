@@ -26,7 +26,7 @@
 3. PWM 模式 2 则相反
 ## 实践
 ### 
-```
+```C
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"

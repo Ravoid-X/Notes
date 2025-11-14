@@ -6,7 +6,7 @@
 <img src="../../pic/ML/Base/House_sell_model.png" style="width:520px;padding:10px;"/>
 
 使用plt画出数据集分布
-````
+```Python
 import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('./deeplearning.mplstyle')
@@ -18,11 +18,11 @@ plt.title("Housing Prices")
 plt.ylabel('Price (in 1000s of dollars)')
 plt.xlabel('Size (1000 sqft)')
 plt.show()
-````
+```
 ## 单元线性回归模型
 <img src="../../pic/ML/Base/single_linear_regression_model.png" style="width:520px;padding:10px;"/>
 
-($x^{(i)}$，$y^{(i)}$）表示一对输入输出数据，w、b为模型参数，$\widehat{y}$为模型预测值
+($x^{(i)}$，$y^{(i)}$) 表示一对输入输出数据，w、b为模型参数，$\widehat{y}$为模型预测值
 $$ \widehat{y}=f_{w,b}(x^{(i)}) = wx^{(i)} + b$$
 ## 代价函数
 $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$

@@ -21,7 +21,7 @@ https://opencv.org/releases/
 5. 到 build 路径下运行 ``make``，完成后运行 ``make install``
 6. 将 ``C:\ruanjian\opencv\mingw64-build\install\x64\mingw\bin``添加到系统变量路径中
 7. CMakeLists添加
-```
+```CMake
 set(OpenCV_DIR  C:/ruanjian/opencv/build/install)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -30,7 +30,7 @@ target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 ## MVSC编译
 1. 将 ``C:\ruanjian\opencv\build\x64\vc16\bin``添加到系统变量路径中
 2. CMakeLists添加
-```
+```CMake
 set(OpenCV_DIR  C:/ruanjian/opencv/build/x64/vc16/lib/)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -40,13 +40,13 @@ target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 ## 下载
 `wget https://github.com/opencv/opencv/archive/refs/tags/4.12.0.zip`
 ## 安装依赖
-```
+```Bash
 sudo apt-get install build-essential
 sudo apt-get install cmake-gui git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
 sudo apt-get install python3-dev python3-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev
 ```
 ## 编译
-```
+```Bash
 mkdir -p build && cd build
 cmake ../../opencv412 ..
 make -j16
@@ -59,7 +59,7 @@ sudo make install
 2. 添加 `/usr/local/lib`
 ### 配置安装路径
 1. 
-```
+```Bash
 sudo ldconfig
 sudo gedit /etc/bash.bashrc
 ```
@@ -71,13 +71,13 @@ export PKG_CONFIG_PATH
 3. 更新环境变量
 `source /etc/bash.bashrc`
 ## 测试
-```
+```Bash
 python3
 import cv2
 cv2.__version__
 ```
 ## CMakeLists 配置
-```
+```CMake
 if(USE_OPENCV)
     message(STATUS "COMMON: OpenCV is ENABLED")
     if(WIN32)

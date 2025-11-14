@@ -1,5 +1,5 @@
 ## 带参数
-```
+```C++
 int main(int argc, char* argv[])
 ```
 ### argc (参数计数 Argument Count)

@@ -1,5 +1,5 @@
 ## 构建
-```
+```C++
 struct Node{
     int value;
     Node * left;
@@ -28,7 +28,7 @@ void inertNode(Node *node,int value){
 ## 遍历
 ### 前序
 深度优先的遍历方法，它首先访问根节点，然后递归地访问左子树，最后访问右子树。
-```
+```C++
 void preOrder(Node *node){
     if(node){
         std::cout<<node->value;
@@ -59,7 +59,7 @@ void preOrder(Node *node){
 ```
 ### 中序
 首先递归地访问左子树，然后访问根节点，最后访问右子树。
-```
+```C++
 void inOrder(Node *node){
     if(node){
         inOrder(node->left);
@@ -89,7 +89,7 @@ void inOrder(Node *node){
 ```
 ### 后序
 先递归地访问左子树，然后访问右子树，最后访问根节点。
-```
+```C++
 void posOrder(Node *node){
     if(node){
         posOrder(node->left);
@@ -122,7 +122,7 @@ void posOrder1(Node *node){
 ```
 ### 层序遍历
 广度优先,从根节点开始，逐层访问树中的每个节点。
-```
+```C++
 void broadOrder(Node *node){
     if(!node){
         return;
@@ -145,7 +145,7 @@ void broadOrder(Node *node){
 ```
 ## 相关操作
 ### 增
-```
+```C++
 void broadOrder(Node *node){
     if(!node){
         return;
@@ -167,7 +167,7 @@ void broadOrder(Node *node){
 }
 ```
 ### 删
-```
+```C++
 void Remove(BST* &tree, int data)
 {
 	if (tree != NULL)
@@ -198,7 +198,7 @@ void Remove(BST* &tree, int data)
 }
 ```
 ### 查
-```
+```C++
 bool isExist(BST* tree, int data)
 {
 	if (tree == NULL)
@@ -212,7 +212,7 @@ bool isExist(BST* tree, int data)
 }
 ```
 ### 改
-```
+```C++
 void change(BST* &tree, int data，int new_data)
 {
 	if (tree == NULL)

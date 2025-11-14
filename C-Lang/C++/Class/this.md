@@ -6,7 +6,7 @@
 5. 
 ## 作用
 ### 解决成员变量与函数参数同名
-```
+```C++
 class Example {
 private:
     int value;
@@ -17,7 +17,7 @@ public:
 }
 ```
 ### 支持方法链调用
-```
+```C++
 class Example {
 private:
     int value;

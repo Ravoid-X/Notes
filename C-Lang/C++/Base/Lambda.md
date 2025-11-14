@@ -20,7 +20,7 @@ lambda 表达式执行的代码，必须有
 ### 混合捕获
 [&, var1, =]，可以混合使用默认捕获方式和特定变量的捕获方式
 ## 示例
-```
+```C++
 #include <iostream>
 #include <vector>
 #include <algorithm>

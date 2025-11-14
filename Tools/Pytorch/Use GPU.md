@@ -1,5 +1,5 @@
 ## .cuda()
-```
+```C++
 # 将网络模型在gpu上训练
 model = Model()
 if torch.cuda.is_available():

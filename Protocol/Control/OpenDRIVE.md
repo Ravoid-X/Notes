@@ -21,7 +21,8 @@
 3. `<signals> / <objects>`：定义路上的交通信号（如红绿灯）和固定对象（如路灯、障碍物）
 ### 示例 1 
 一条 100 米长、双向两车道的直线公路
-```<OpenDRIVE>
+```XML
+<OpenDRIVE>
     <header ... />
     <road name="Simple Straight Road" length="100.0" id="1" junction="-1">
         <planView>

@@ -5,7 +5,7 @@
 # `#include <thread>`
 ## 创建线程
 ### 普通函数
-```
+```C++
 void task() {
    cout << "Hello from thread!" << endl;
 }
@@ -15,7 +15,7 @@ t.join(); // 等待线程 t 执行完毕
 return 0;
 ```
 ### Lambda 表达式
-```
+```C++
 thread t([]() {
    cout << "Hello from lambda thread!" << endl;
 });
@@ -23,7 +23,7 @@ t.join();
 ```
 ### 函数对象
 当一个类重载了函数调用运算符 () 时，就可以像调用函数一样“调用”这个类的对象，称为函数对象。
-```
+```C++
 class Task {
 public:
    void operator()() const {
@@ -36,7 +36,7 @@ thread t(my_task);
 t.join();
 ```
 ### 成员函数
-```
+```C++
 class MyClass {
 public:
    void run() {
@@ -51,7 +51,7 @@ t.join();
 ```
 ## 有参数情况
 ### 值传递
-```
+```C++
 void print_message(const string& message) {
    cout << message << endl;
 }
@@ -63,7 +63,7 @@ t.join();
 ### 引用传递
 1. 对于只移动类型（如 unique_ptr），需要使用 move
 2. 通过引用传递，必须使用 ref 或 cref，cref具有常量性
-```
+```C++
 void update_value(int& value) {
     value = 100;
 }
@@ -83,15 +83,15 @@ t.join();
 1. 返回一个 unsigned int，表示硬件支持的并发线程数
 2. 通常等于 CPU 的核心数或超线程数
 3. 在某些系统或环境下，可能返回 0，表示无法检测到此信息
-```
+```C++
 thread::hardware_concurrency();
 ```
 ### 线程标识
-```
+```C++
 this_thread::get_id(); // 当前正在执行此代码的线程的 ID
 thread_object_name.get_id(); //该对象所管理的那个线程的 ID
 ```
-```
+```C++
 void foo() {
     cout << "Hello from foo. My thread ID is: " << this_thread::get_id() << endl;
 }
@@ -107,7 +107,7 @@ t1.join();
 t2.join();
 ```
 ### 线程调度
-```
+```C++
 //让当前线程休眠一段时间
 this_thread::sleep_for(duration); 
 //让当前线程阻塞，直到一个指定的时间点
@@ -116,7 +116,7 @@ this_thread::sleep_until(time_point)
 this_thread::yield(); 
 ```
 ### 对象管理
-```
+```C++
 //返回一个 bool 值，判断一个线程对象是否是可结合的
 //线程对象创建并关联到一个正在执行的线程后，还没有被 join() 或 detach() 过即 可结合的
 thread_object_name.joinable(); 

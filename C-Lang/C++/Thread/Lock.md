@@ -14,7 +14,7 @@
 ### 实现
 `std::mutex`
 ### 示例
-```
+```C++
 mutex mtx; // 全局互斥锁实例
 long long shared_counter = 0;
 
@@ -49,7 +49,7 @@ int main() {
 ### 实现
 `std::atomic_flag` 或 `std::atomic<bool>`
 ### 示例
-```
+```C++
 class Spinlock {
 private:
     atomic_flag flag = ATOMIC_FLAG_INIT;
@@ -99,7 +99,7 @@ int main() {
 ### 实现
 `std::shared_mutex`
 ### 示例
-```
+```C++
 shared_mutex shared_mtx;
 int shared_data = 0;
 
@@ -138,7 +138,7 @@ int main() {
 ### 实现
 `std::recursive_mutex`
 ### 示例
-```
+```C++
 recursive_mutex rec_mtx;
 int value = 0;
 
@@ -168,7 +168,7 @@ int main() {
 2. 没有 lock() 和 unlock() 成员函数，一旦创建就锁定，直到销毁。、
 ### 示例
 1. 在上面递归锁的示例中，lock_guard的作用域是整个函数，再举一个例子
-```
+```C++
 //其他线程至少等待 50 毫秒才能获取锁，即使真正需要锁的操作只是一瞬间。
 mutex mtx;
 long long shared_counter = 0;
@@ -184,7 +184,7 @@ void process_data_bad() {
 }
 ```
 2. 改进方法，使用{}
-```
+```C++
 void process_data_good() {
     // 步骤 1: 准备数据 (在锁外部执行，不影响其他线程)
     int data_to_process = 1;

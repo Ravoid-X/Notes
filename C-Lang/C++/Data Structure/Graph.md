@@ -1,6 +1,6 @@
 ## 邻接矩阵
 ### 定义结点
-```
+```C++
 #define MaxVertices 100	//假设包含的最大结点数
 #define MaxWeight -1	//假设两点不邻接的正无穷值
 struct AdjMarix {
@@ -11,7 +11,7 @@ struct AdjMarix {
 };
 ```
 ### 创建
-```
+```C++
 void CreatGraph(AdjMarix *G) {
 	int vi, vj, w;
 	cout << "请输入顶点数量：" << endl;
@@ -34,7 +34,7 @@ void CreatGraph(AdjMarix *G) {
 }
 ```
 ### 遍历
-```
+```C++
 void ShowGraph(AdjMarix *G) {
 	for (int i = 0; i < G->numV; i++) {
 		for (int j = 0; j < G->numV; j++) {
@@ -46,7 +46,7 @@ void ShowGraph(AdjMarix *G) {
 ```
 ## 邻接表
 ### 定义
-```
+```C++
 #define MaxVertices 100
 //定义结点
 struct VertexNode {
@@ -61,7 +61,7 @@ struct GraphAdjList {
 };
 ```
 ### 创建
-```
+```C++
 void CreatGraph(GraphAdjList &G) {
 	int vi, vj, w;
 	cout << "请输入顶点数：" << endl;
@@ -97,7 +97,7 @@ void CreatGraph(GraphAdjList &G) {
 }
 ```
 ### 遍历
-```
+```C++
 void showGraph(GraphAdjList &G) {
 	for (int i = 0; i < G.numV; i++) {
 		VertexNode *temp = G.AdjList[i]->next;
@@ -114,7 +114,7 @@ void showGraph(GraphAdjList &G) {
 }
 ```
 ## 邻接数组
-```
+```C++
 for(unsigned short i=0;i<m;++i){
 	unsigned short u,v;
 	cin>>u>>v;
@@ -124,7 +124,7 @@ for(unsigned short i=0;i<m;++i){
 ```
 ## 十字链表
 ### 定义
-```
+```C++
 //边集定义
 struct ArcBox {
 	int headvex, tailvex;	//对应弧头和弧尾的下标
@@ -151,7 +151,7 @@ int Location(OLGraph *G, int key) {
 }
 ```
 ### 创建
-```
+```C++
 void CreatGraph(OLGraph *G) {
 	int vi, vj, xi, xj;
 
@@ -180,7 +180,7 @@ void CreatGraph(OLGraph *G) {
 }
 ```
 ### 遍历
-```
+```C++
 void ShowGraph(OLGraph *G) {
 	for (int i = 0; i < G->vexnum; i++) {
 		int vi = G->xlist[i].data;
@@ -211,7 +211,7 @@ void ShowGraph(OLGraph *G) {
 ```
 ## 邻接多重表
 ### 定义
-```
+```C++
 //定义边集
 struct ArcNode {
 	int ivex, jvex;
@@ -237,7 +237,7 @@ int Location(Graph *G, int key) {
 }
 ```
 ### 创建
-```
+```C++
 void CreatGraph(Graph *G) {
 	int vi, vj;
 
@@ -265,7 +265,7 @@ void CreatGraph(Graph *G) {
 }
 ```
 ### 遍历
-```
+```C++
 void showGraph(Graph *G) {
 	for (int i = 0; i < G->vexnum; i++) {
 		int vi = G->Dvex[i].data;

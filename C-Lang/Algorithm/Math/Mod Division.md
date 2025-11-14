@@ -21,7 +21,7 @@ $b ^{−1}=b ^{p−2}$
 (2)拆解幂运算，$a ^{13}=a ^{8+4+1}=a ^8\times a ^4\times a ^1$\
 (3)每一项都是前一项的平方，可以不断地对底数进行平方并乘起来，就能得到结果
 4. 代码
-```
+```C++
 ll power(ll base, ll exp) {
     ll res = 1;
     base %= P;
@@ -39,7 +39,7 @@ ll modInverse(ll n) {
 }
 ```
 ## 预运算阶乘
-```
+```C++
 void precompute() {
     fact[0] = 1;
     invFact[0] = 1;

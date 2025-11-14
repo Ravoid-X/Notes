@@ -25,11 +25,11 @@ Linux 2.6 内核引入了统一设备模型，提供了一个面向对象的框�
 ### 文件与属性
 1. 目录中的文件被称为 属性。对这些文件的读写操作会被内核截获，并转化为对驱动程序中预先注册的 show 和 store 函数的调用。
 2. 用户空间读取属性文件时调用，驱动程序应将属性值格式化为字符串并写入 buf 中。sysfs 核心会分配一个大小为 PAGE_SIZE 的缓冲区 
-```
+```C
 show(struct kobject *kobj, struct attribute *attr, char *buf);   
 ```
 3. 用户空间写入属性文件时调用，驱动程序应解析 buf 中的字符串以更新内部状态。
-```
+```C
 store(struct kobject *kobj, struct attribute *attr, const char *buf, size_t count);
 ```
 ### 控制通路与数据通路

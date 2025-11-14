@@ -11,7 +11,7 @@
 4. 终止条件：当已选择的边数达到 n-1
 5. 时间复杂度：O(mlogm)，主要消耗在边的排序上。更适合稀疏图（边数 m 远小于顶点数 n 的平方）
 ### Kruskal 程序
-```
+```C++
 struct edge{
     int u,v,w,id;
 };
@@ -41,7 +41,7 @@ for (auto& e:edges){
 5. 终止条件：当已选的顶点数达到 n 
 6. 时间复杂度 O(mlogn)，更适合稠密图
 ### Prim 程序
-```
+```C++
 struct edge{
     int u,v,w,id;
     bool operator>(const edge& other) const {return w > other.w;}

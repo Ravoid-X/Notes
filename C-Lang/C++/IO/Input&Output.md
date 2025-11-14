@@ -1,24 +1,24 @@
 ``# include <iostream>``
 ## Input
 1. ``cin>>``
-```
+```C++
 //遇到空白（包括回车、空格等）结束输入，并把非int字符留在缓存区（包括回车，空格等）
 int m;
 cin >> m; 
 ```
 2. ``get()``
-```
+```C++
 //回收缓存区的第一个字符（任意字符），通常用来接收由cin产生的空白字符
 cin.get();
 ```
 3. ``getline()``
-```
+```C++
 //输入一行带空白字符的字符串，遇到回车结束输入
 string str;
 getline(cin, str);
 ```
 4. 多行带空白字符的字符串
-```
+```C++
 string str1;
 vector<string> vec;
 while (getline(cin, str1)) {

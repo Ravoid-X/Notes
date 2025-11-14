@@ -9,7 +9,7 @@
 2. 当一个任务试图从空队列中读取数据（xQueueReceive）或向满队列中写入数据（xQueueSend）时，会自动进入阻塞态，不消耗任何 CPU 时间，直到条件满足或超时。
 ## 队列使用
 ### 创建
-```
+```C++
 QueueHandle_t xQueueCreate(UBaseType_t uxQueueLength, UBaseType_t uxItemSize)
 ```
 1. uxQueueLength 是队列能容纳的最大项目数
@@ -21,7 +21,7 @@ QueueHandle_t xQueueCreate(UBaseType_t uxQueueLength, UBaseType_t uxItemSize)
 在中断服务程序中，必须使用对应的ISR安全版本：xQueueSendFromISR() 和 xQueueReceiveFromISR()
 ### 示例1：传递简单数据
 一个生产者任务生成整数，并通过队列发送给一个消费者任务进行打印
-```
+```C++
 QueueHandle_t xIntegerQueue;
 void vProducerTask(void *pvParameters) {
     int32_t lValueToSend = 0;
@@ -47,7 +47,7 @@ void main(void) {
 ```
 ### 示例2：传递结构体
 一个传感器任务将采集到的数据打包成结构体，通过队列发送给数据处理任务
-```
+```C++
 typedef struct {
     float temperature;
     float humidity;
@@ -68,7 +68,7 @@ void vSensorTask(void *pvParameters) {
 1. 可以看作是长度为1的队列，只有空和满两种状态。主要用于任务间的同步或ISR与任务间的同步。
 2. 最经典的应用场景是：一个任务通过获取信号量来等待一个事件，而一个 ISR 在事件发生时通过给予信号量来通知该任务
 3. 示例：一个任务阻塞等待信号量，一个 GPIO 中断服务程序在按键按下时释放该信号量，从而唤醒任务处理按键事件
-```
+```C++
 SemaphoreHandle_t xButtonSemaphore;
 
 void vButtonHandlerTask(void *pvParameters) {
@@ -100,7 +100,7 @@ void EXTI0_IRQHandler(void) {
 2. 确保了持有锁的低优先级任务能尽快运行并释放资源，从而最大限度地减少高优先级任务的阻塞时间。
 ### 示例
 两个任务竞争使用同一个串口打印信息。使用互斥锁确保每次只有一个任务可以访问串口，防止输出信息交错混乱.
-```
+```C++
 SemaphoreHandle_t xUartMutex;
 void vTask1(void *pvParameters) {
     for (;;) {
@@ -123,7 +123,7 @@ void vTask1(void *pvParameters) {
 3. 等待事件位：xEventGroupWaitBits()，通过参数可以指定等待逻辑（AND/OR）、是否在退出时清除事件位以及超时时间 
 ### 示例
 一个应用任务需要等待网络连接成功（事件位 0）和 NTP 时间同步完成（事件位 1）后才能开始工作
-```
+```C++
 #define BIT_0_WIFI_CONNECTED (1 << 0)
 #define BIT_1_NTP_SYNCED     (1 << 1)
 

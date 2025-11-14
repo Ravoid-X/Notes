@@ -30,7 +30,7 @@ FreeRTOS 提供了 5 种堆内存管理方案（heap_1 到 heap_5），以替代
 4. 避免在中断服务程序中调用这些函数
 ### 示例
 一个任务动态分配一个缓冲区用于处理接收到的消息，处理完毕后释放该缓冲区，演示了正确的用法和错误检查
-```
+```C++
 void vProcessMessageTask(void *pvParameters) {
     char *pcReceivedString;
     size_t xStringLength;

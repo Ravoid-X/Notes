@@ -5,7 +5,7 @@
 ### 解题思路
 BFS
 ### 程序
-```
+```C++
 int n,m,s;
 cin>>n>>m>>s;
 vector<vector<int>> adj(n+1);
@@ -53,7 +53,7 @@ while(!q.empty()){
 ### 解题思路
 Dijkstra 
 ### 程序
-```
+```C++
 struct edge {
     int to;
     int w;

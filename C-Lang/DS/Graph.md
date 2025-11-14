@@ -50,7 +50,7 @@ G 是由两个集合 V 和 E 组成，记为 G = （V，E），其中 V 代表�
 <img src="../../pic/C-Lang/DS/graph-adj-table.png" style="width:600px;padding:10px;"/>
 
 ### 邻接数组
-```
+```C++
 for(unsigned short i=0;i<m;++i){
 	unsigned short u,v;
 	cin>>u>>v;

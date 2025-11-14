@@ -1,4 +1,4 @@
-## 定义
+## 定义(pending)
 1. 散列表是一种不比较key，而是根据key计算key在表中的位置的数据结构；是key和其所在存储地址的映射关系，散列表通过此方式达到快速索引的目的。
 2. 由hash函数和数组构成，以<key, value>存储\
 （1）hash函数：映射，通过key找到其存储地址。\
@@ -28,7 +28,7 @@
 1. 线性探测\
 线性的查找空白单元，如得到的数组下标已有对象，则一直往下找直到一个空白地方。\
 （1）插入
-```
+```C++
 void insert(Student student){
     int key = student.getKey();
     int hashVal = hash(key);
@@ -41,7 +41,7 @@ void insert(Student student){
 }
 ```
 （2）查找
-```
+```C++
 Student find(int key){
     int hashVal = hash(key);
     while (array[hashVal] !=null){
@@ -58,7 +58,7 @@ Student find(int key){
 （3）删除\
 通过线性探测方法找到一个空闲位置，我们就可以认定哈希表中不存在这个数据。如果这个空闲位置是后来删除的，就会导致原来的查找算法失效。需要一个特殊的数据来顶替这个被删除的数据。\
 如何在线性探测哈希表中做了多次操作，会导致哈希表中充满了学号为-1的数据项，使的哈希表的效率下降，所以很多哈希表中没有提供删除操作。
-```
+```C++
 Student delete(int key){
     int hashVal = hash(key);
     while (array[hashVal] !=null){
@@ -80,7 +80,7 @@ Student delete(int key){
 增加一个哈希函数用来根据关键字生成探测步长，需和第一个哈希函数不一样且不能输出0。stepSize = constant-(key%constant)函数效果非常好，constant是一个质数并且小于数组容量。\
 （1）选择质数是因为探测过程会查找到哈希表每一个位置，如果容量为 15，步长为 5，若没找到会循环查找 0，5，10\
 （2）插入
-```
+```C++
 int stepHash(int key) {
     return 7 - (key % 7);
 }
@@ -98,7 +98,7 @@ void insert(Student student) {
 }
 ```
 （3）查找
-```
+```C++
 Student find(int key) {
     int hashVal = hash(key);
     int stepSize = stepHash(key);
@@ -113,7 +113,7 @@ Student find(int key) {
 }
 ```
 （4）删除
-```
+```C++
 Student delete(int key) {
     int hashVal = hash(key);
     int stepSize = stepHash(key);
@@ -133,7 +133,7 @@ Student delete(int key) {
 （1）每个数组对应一条链表。当value落到哈希表中的某个位置，将其添加到链表，其他同样映射到这个位置的数据项也只需添加到链表。\
 （2）可以使用有序链表，不能加快成功的查找，但是可以减少不成功的查找时间。\
 （3）插入
-```
+```C++
 void insert(Link link){
         int key = link.getKey();
         Link previous = null;
@@ -150,7 +150,7 @@ void insert(Link link){
     }
 ```
 （4）查找
-```
+```C++
 Link find(int key){
         Link current = first;
         while (current !=null && current.getKey() <=key){
@@ -163,7 +163,7 @@ Link find(int key){
     }
 ```
 （5）删除
-```
+```C++
 void delete(int key){
         Link previous = null;
         Link current = first;

@@ -6,7 +6,7 @@
 <img src="../../../pic/C-Lang/Algorithm/Search/dfs_exp1.png" style="width:400px;padding:10px;"/>
 
 ### 程序
-```
+```C++
 vector<vector<int>> visited(n, vector<int>(m, 0));
 queue<pair<int,int>> q;
 q.push(make_pair(0, 0));
@@ -40,7 +40,7 @@ cout<<"No"<<endl;
 <img src="../../../pic/C-Lang/Algorithm/Search/bfs_exp1.png" style="width:400px;padding:10px;"/>
 
 ### 程序
-```
+```C++
 const short dx[4]={-1,1,0,0};
 const short dy[4]={0,0,-1,1};
 struct point{

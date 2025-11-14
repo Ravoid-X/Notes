@@ -22,13 +22,13 @@
 ### 命令
 是生成目标所执行的 Shell 命令。每一行命令都必须以一个 Tab 键开头，空格会报错
 1. make 会为每一行命令启动一个全新的、独立的子 Shell 来执行
-```
+```makefile
 test:
     cd build # 在一个子 Shell 中执行，该 Shell 退出后状态全部丢失
     pwd # 运行 make test，输出仍然是当前目录，而不是 build 目录
 ```
 2. 修正方法
-```
+```makefile
 test:
     cd build; pwd 或者
     cd build && \
@@ -44,7 +44,7 @@ test:
 ### `=`
 1. make 在使用这个变量时（在规则的命令中，或在其他变量定义中）才对其进行展开
 2. 如果它包含了对其他变量的引用，会一层层递归地展开
-```
+```makefile
 X = $(Y)
 Y = Hello
 
@@ -54,13 +54,13 @@ all:
 3. 无限循环：`A = $(B)$ 和 $B = $(A)` 会导致 make 致命错误
 4. 意外追加：`CFLAGS = $(CFLAGS) -g` 这样的写法会陷入无限递归
 5. 性能问题：
-```
+```makefile
 VERSION = $(shell git rev-parse HEAD)
 # 每次使用 $(VERSION) 都会重新执行一次 'git rev-parse HEAD'
 ```
 ### `:=`
 1. make 在定义这一行时，就立刻计算出变量的值，并将其固定下来
-```
+```makefile
 X := $(Y)
 Y := Hello
 
@@ -72,7 +72,7 @@ all:
 ### `?=`
 1. 只有当这个变量在之前没有被定义过时，才给它赋值
 2. 可以设置默认值，并允许用户从命令行覆盖
-```
+```makefile
 # Makefile 内部
 CC ?= gcc
 
@@ -82,7 +82,7 @@ all:
 ### `+=`
 1. 向变量的末尾追加字符串（自动加一个空格）
 2. 会继承变量赋值和扩展的方式
-```
+```makefile
 OBJS := main.o
 OBJS += utils.o # $(OBJS) 的值现在是 "main.o utils.o"
 # 如果 OBJS 是用 := 定义的，+= 也会立即展开
@@ -109,7 +109,7 @@ OBJS += utils.o # $(OBJS) 的值现在是 "main.o utils.o"
 ### `$?`
 1. 含义：所有比目标更新的依赖的列表
 2. 用途：构建静态库（.a 文件）。只想把新编译的 .o 文件添加到库中，而不是每一次都把所有 .o 文件加进去
-```
+```makefile
 libutils.a: utils.o string.o
     # ar 是归档工具。r(替换), c(创建), s(创建索引)
     # $? 只包含被更新的 .o 文件
@@ -118,7 +118,7 @@ libutils.a: utils.o string.o
 ### `$+`
 1. 含义：规则的所有依赖的完整列表，保留原始顺序和重复项
 2. 用途：链接器对库的顺序和重复很敏感
-```
+```makefile
 # 假设你需要链接 a 库，然后是 b 库，然后再链接一次 a 库
 my_program: liba.a libb.a liba.a
     # 如果用 $^, 会变成 'liba.a libb.a'，链接失败
@@ -139,14 +139,14 @@ my_program: liba.a libb.a liba.a
 ## 模式规则
 不需要为每个文件都写规则，而是定义一个“模板”。% 是通配符
 ### 示例
-```
+```makefile
 # 模板：如何从一个同名的 .c 文件构建一个 .o 文件
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 ```
 ### 源码外构建
 假设源文件在 src/，目标文件放在 build/
-```
+```makefile
 BUILD_DIR := build
 SRC_DIR := src
 
@@ -171,13 +171,13 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 ## 常用函数
 ### $(wildcard 模式)
 搜索文件，会扫描硬盘，返回匹配到的文件列表
-```
+```makefile
 # 找到 src/ 下所有的 .c 文件
 SRCS := $(wildcard src/*.c)
 # SRCS 的值可能是 "src/main.c src/utils.c"
 ```
 ### $(patsubst 模式, 替换, 文本)
-```
+```makefile
 # SRCS = "src/main.c src/utils.c"
 # 我们想得到 "build/main.o build/utils.o"
 OBJS := $(patsubst src/%.c, build/%.o, $(SRCS))
@@ -185,12 +185,12 @@ OBJS := $(patsubst src/%.c, build/%.o, $(SRCS))
 ### $(shell 命令)
 1. 执行 Shell 命令并将其标准输出作为函数的值
 2. 尽量只在 := 赋值时使用，否则会有性能问题
-```
+```makefile
 KERNEL := $(shell uname -r)
 ```
 
 # 示例
-```
+```makefile
 # 1. 变量定义 (使用 := 和 ?=)
 # -----------------------------------------------------
 

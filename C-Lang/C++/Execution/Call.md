@@ -12,7 +12,7 @@
 ## 调用流程
 ### 举例
 程序：
-```
+```C++
 int add(int x, int y) {
     int sum = x + y;
     return sum;

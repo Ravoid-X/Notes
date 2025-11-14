@@ -1,19 +1,19 @@
 ## 引入命名空间
-```
+```C++
 using namespace std;//std::cin>>x; 可略写为 cin>>x;
 ```
 ## 引入单个声明
-```
+```C++
 using std::string;//std::string s = "123"; 可略写为 string s = "123";
 ```
 ## 重定义
-```
+```C++
 using ULL = unsigned long long;	
 using func = void(*)(int, int);
 using mapInt = std::map<int, Val>;
 ```
 ### 改变派生类对父类成员的访问控制
-```
+```C++
 class Base
 {
 protected:

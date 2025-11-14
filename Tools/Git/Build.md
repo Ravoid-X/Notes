@@ -1,6 +1,6 @@
 ### 在 github 上新建仓库
 ### 在本地文件夹目录下
-```
+```Bash
 git init
 git add .
 git commit -m "first commit"

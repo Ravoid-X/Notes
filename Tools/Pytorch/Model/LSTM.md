@@ -1,5 +1,5 @@
 ## 例子
-```
+```C++
 inline torch::nn::LSTMOptions lstmOption(int in_features, int hidden_layer_size, int num_layers, bool batch_first = false, bool bidirectional = false){
     torch::nn::LSTMOptions lstmOption = torch::nn::LSTMOptions(in_features, hidden_layer_size);
     lstmOption.num_layers(num_layers).batch_first(batch_first).bidirectional(bidirectional);

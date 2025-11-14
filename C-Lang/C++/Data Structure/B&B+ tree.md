@@ -1,5 +1,5 @@
 # B
-```
+```C++
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -434,7 +434,7 @@ void BTree::remove(int k) {
 }
 ```
 # B+
-```
+```C++
 #include <iostream>
 #include <vector>
 #include <algorithm> // for std::copy, std::copy_backward

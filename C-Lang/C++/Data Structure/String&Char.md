@@ -1,7 +1,7 @@
 # string
 `#include <string>`
 ## 初始化
-```
+```C++
 string s1;
 string s2 = "Hello, World!";
 string s3("Hello, C++!");
@@ -11,7 +11,7 @@ string s6(s2, 0, 5) // 从 s2 的第 0 个位置开始，取 5 个字符
 string s7(10, '-');
 ```
 ## 容量
-```
+```C++
 s.size();      //与 s.length(); 相同
 s.capacity();  //不重新分配内存的情况下，字符串可以容纳的字符数，通常大于或等于 size()
 s.empty();
@@ -20,14 +20,14 @@ reserve(n)   //为字符串预留空间（扩容），不会改变容量大小
 s.clear();
 ```
 ## 访问
-```
+```C++
 s[0];      // 不进行边界检查
 s.at(0);   // 进行边界检查，会抛出 out_of_range 异常。
 s.front();
 s.back();
 ```
 ## 添加
-```
+```C++
 s = "Hello";
 s += " C++";     
 s.append("!");    
@@ -36,18 +36,18 @@ s.append(3, 'A');  // "Hello C++! AAA"
 s.insert(6, "C++ ")  // "Hello C++ C++! AAA"
 ```
 ## 删除
-```
+```C++
 s = "Hello C++ World";
 s.erase(6, 4); // "Hello World"
 s.pop_back();
 ```
 ## 替换
-```
+```C++
 s = "I love Python!";
 s.replace(7, 6, "C++"); // "I love C++!"
 ```
 ## 查找
-```
+```C++
 find(str, pos=0); // 从位置 pos 开始，查找子串 str 第一次出现的位置
 rfind(str, pos=npos); // 从末尾开始反向查找，查找子串 str 最后一次出现的位置
 find_first_of(chars, pos=0); // 查找 chars 中任意一个字符第一次出现的位置
@@ -56,16 +56,16 @@ find_first_not_of(chars, pos=0); //查找不属于 chars 中任意一个字符�
 find_last_not_of(chars, pos=npos); //反向查找不属于 chars 中任意一个字符的第一个字符
 ```
 ## 比较
-```
+```C++
 compare(str); // 与另一个字符串 str 进行字典序比较。
 返回 0：两个字符串相等。
 返回 < 0：当前字符串小于 str。
 ```
 ## 分割
-```
+```C++
 substr(pos=0, count=npos); // 获取从 pos 开始，长度为 count 的子串
 ```
-```
+```C++
 #include <sstream>
 vector<string> tokens;
 string token;
@@ -76,7 +76,7 @@ while (getline(tokenStream, token, delimiter)) {
 }
 ```
 ## 转换
-```
+```C++
 int i = stoi(s);
 long l = stol(s);
 long long = stoll(s);
@@ -86,18 +86,18 @@ string s = to_string(i);
 ```
 # char
 ## 定义
-```
+```C++
 char ch = 'A';
 char str[] = "Hello";
 ```
 ## 遍历
-```
+```C++
 for (int i = 0; str[i] != '\0'; ++i) {
     cout << str[i] << " ";
 }
 ```
 ## 相关函数
-```
+```C++
 #include <cctype>
 isalpha();  //判断字符是否为字母字符
 isdigit();  //判断字符是否为数字字符
@@ -105,7 +105,7 @@ tolower();  //将字符转换为小写字母
 toupper();  //将字符转换为大写字母
 ```
 ## 内存空间
-```
+```C++
 char s1[] = {'A', 'A', 'A'}; //没有'\n'，3 个字节
 char s2[] = "AAA";           //有'\n'，4 个字节
 ```

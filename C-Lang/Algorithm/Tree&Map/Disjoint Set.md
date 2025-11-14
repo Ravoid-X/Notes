@@ -7,7 +7,7 @@
 （1）parent[i] 存储元素 i 的父节点。根节点的父节点是自身，即 parent[root] = root\
 （2）size[i] 仅在 i 是所在集合根节点时有意义，表示集合中元素总数
 ### 程序
-```
+```C++
 class DSU {
 private:
     vector<unsigned int> parent; 

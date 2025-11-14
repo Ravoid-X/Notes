@@ -1,6 +1,6 @@
 ## Struct
 ### 实例
-```
+```C++
 struct Room {
 		int floor;
 		int No;
@@ -19,7 +19,7 @@ struct Student {
 
 ## 内存对齐
 ### 举例
-```
+```C++
 struct A {
     char c1;
     char c2;
@@ -49,7 +49,7 @@ struct B {
 3. 所有数据成员各自内存对齐后，结构体本身还要进行一次内存对齐，保证整个结构体占用内存大小是结构体内最大数据成员的最小整数倍。
 ## union 
 ### 举例
-```
+```C++
 testunion {
 	char c;
 	int i;

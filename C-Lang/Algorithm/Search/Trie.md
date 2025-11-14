@@ -4,7 +4,7 @@
 <img src="../../../pic/C-Lang/Algorithm/Search/trie_exp1.png" style="width:600px;padding:10px;"/>
 
 ### 程序
-```
+```C++
 struct trienode{
     vector<trienode*> child;
     int count=0;

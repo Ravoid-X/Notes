@@ -3,35 +3,35 @@
 在定义的时候要进行初始化，并且之后不能再给它赋值，否则会报错。
 ## 指针
 ### 指针指向的数据不可变
-```
+```C++
 const int *p    //或者
 int const *p
 ```
 指针指向的数据是不可变的
 ### 指针本身不可变
-```
+```C++
 int * const p
 ```
 ### 结合
-```
+```C++
 const int * const p
 ```
 ## 函数
 ### 修饰形参
-```
+```C++
 int& fun(const int& a);
 ```
 ### 修饰返回值
-```
+```C++
 const int& fun(int& a);
 ```
 ### 修饰成员函数
-```
+```C++
 int& fun(int& a) const{} 
 ```
 ## 类
 ### 成员变量
-```
+```C++
 class A{
 public:
     A(int a):m_a(a){}  //正常
@@ -43,7 +43,7 @@ private:
 1. 不能在类内初始化 const 成员变量，因为类的对象没创建前，编译器并不知道 const 成员变量是什么。
 2. const 成员变量只能在初始化列表中初始化。
 ### 成员函数
-```
+```C++
 class A {
 public:
     int a = 1;
@@ -58,7 +58,7 @@ const int* A::show(const int* p) const {
 1. 在函数声明处添加了 const 关键字，在类外定义的时候依然要带上
 2. 限定成员函数不可以修改任何数据成员
 ### 对象
-```
+```C++
 const class object(params);
 const class *p = new class(params);
 ```
@@ -66,7 +66,7 @@ const 对象只能访问类中的 const 成员变量和 const 成员函数
 
 # mutable
 为了突破const的限制而设置的。被mutable修饰的变量，将永远处于可变的状态，即使在一个const函数中。
-```
+```C++
 class ClxTest{
     public:
     　　ClxTest();

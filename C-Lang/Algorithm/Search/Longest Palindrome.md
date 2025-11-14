@@ -10,7 +10,7 @@
 4. 中心扩展，$while(s[i-p[i]] == s[i+p[i]] && ... ) ++p[i]$
 5. 若超出 right，则更新 center 和 right
 ### 程序
-```
+```C++
 string s = "#";
 for (char c : s_input) {
     s += c;

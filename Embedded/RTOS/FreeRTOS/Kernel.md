@@ -30,7 +30,7 @@
 4. 挂起态（Suspended）：任务被显式地置于休眠状态（通过调用 vTaskSuspend()），并且不会被调度器考虑。只有通过显式调用 vTaskResume() 才能将其唤醒并移回就绪态。
 ## 任务创建
 ### 动态创建 (xTaskCreate)
-```
+```C++
 BaseType_t xTaskCreate(TaskFunction_t pvTaskCode, const char * const pcName, const configSTACK_DEPTH_TYPE uxStackDepth, void *pvParameters, UBaseType_t uxPriority, TaskHandle_t *pxCreatedTask)
 ```
 1. 从 FreeRTOS 堆中动态分配任务控制块（TCB）和任务栈所需的内存。因此，必须将 configSUPPORT_DYNAMIC_ALLOCATION 设置为 1
@@ -42,11 +42,11 @@ BaseType_t xTaskCreate(TaskFunction_t pvTaskCode, const char * const pcName, con
 7. pxCreatedTask：一个可选的输出参数，用于返回所创建任务的句柄（TaskHandle_t），后续可通过此句柄操作任务。
 8. 返回值：成功时返回 pdPASS，如果堆内存不足则返回 errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY
 ### 静态创建 (xTaskCreateStatic)
-```
+```C++
 TaskHandle_t xTaskCreateStatic(TaskFunction_t pxTaskCode,..., StackType_t * const puxStackBuffer, StaticTask_t * const pxTaskBuffer)
 ```
 1. 要求应用程序开发者自己提供 TCB 和栈所需的内存，通常以静态或全局数组的形式。使用此函数需要将 configSUPPORT_STATIC_ALLOCATION 设置为 1 
-```
+```C++
 // 定义任务栈和TCB的存储空间
 #define BLINK_TASK_STACK_SIZE 128
 static StackType_t xBlinkTaskStack;
@@ -74,7 +74,7 @@ void main(void) {
 ### 任务延时
 1. vTaskDelay(xTicksToDelay)：将当前任务置于阻塞态，持续一个相对的时间长度（以系统节拍数为单位）。实现任务暂停、让出 CPU 的最有效方式。
 2. vTaskDelayUntil(&xLastWakeTime, xTimeIncrement)：将任务阻塞至一个绝对的节拍计数值。非常适合创建固定频率的周期性任务，因为会自动补偿任务执行本身所花费的时间，从而避免了周期性延时累积的误差。
-```
+```C++
 void vPeriodicTask(void *pvParameters) {
     TickType_t xLastWakeTime;
     const TickType_t xFrequency = pdMS_TO_TICKS(100); // 100ms周期
@@ -90,7 +90,7 @@ void vPeriodicTask(void *pvParameters) {
 ### 任务挂起与恢复
 1. vTaskSuspend(xTaskToSuspend)：挂起指定的任务。如果参数为 NULL，则挂起调用该函数的任务自身。
 2. vTaskResume(xTaskToResume)：将一个处于挂起态的任务恢复到就绪态
-```
+```C++
 //一个按键检测任务，根据按键事件来挂起或恢复一个 LED 闪烁任务
 TaskHandle_t xLedTaskHandle = NULL;
 void vButtonCheckTask(void *pvParameters) {
@@ -115,7 +115,7 @@ void vButtonCheckTask(void *pvParameters) {
 2. vTaskDelete() 只会释放由内核为该任务分配的内存（TCB和栈）。
 3. 任务本身通过 pvPortMalloc() 或其他方式动态分配的任何内存，都必须在任务被删除前由应用程序代码负责释放，否则将导致内存泄漏。
 4. 当一个任务删除自身时，其栈和 TCB 的内存回收工作会交由空闲任务来完成。意味着如果应用程序频繁地自删除任务，必须保证空闲任务有足够的 CPU 时间运行。
-```
+```C++
 void vDataProcessorTask(void *pvParameters) {
     uint8_t *pucBuffer = (uint8_t *)pvPortMalloc(1024);
     if (pucBuffer!= NULL) {

@@ -15,7 +15,7 @@
 ### notify_all()
 唤醒所有正在等待的线程
 ## 示例
-```
+```C++
 #include <iostream>
 #include <thread>
 #include <mutex>

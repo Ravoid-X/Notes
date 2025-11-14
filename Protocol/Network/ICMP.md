@@ -12,7 +12,7 @@ typ e和 code 的不同组合可以表示不同功能的ICMP报文
 ## 应用
 ### ping
 测试网络连通性
-```
+```Bash
 ping + 目的IP(域名) + 选项（-a、-c 等等）
 ```
 1. ping -a：指定报文的源 IP，默认为出接口 IP 地址
@@ -22,7 +22,7 @@ ping + 目的IP(域名) + 选项（-a、-c 等等）
 5. ping -i：指定发送 ICMP 报文的接口
 ### tracert
 用于跟踪数据包的转发路径。一般用于排障
-```
+```Bash
 tracert + 选项（-a、-f、-m等等） + 目的IP地址
 ```
 1. tracert -a 指定源IP

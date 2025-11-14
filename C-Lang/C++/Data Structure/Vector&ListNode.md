@@ -1,7 +1,7 @@
-## Vector
+## Vector（pending）
 ``include <vector>``
 ### 创建
-```
+```C++
 vector<int> a;           //构造一个空的vector,
 vector<int> a(10);       //定义了10个整型元素的向量，但没有给出初值
 vector<int> a(10,1);     //定义了10个整型元素的向量，且给出每个元素的初值为1
@@ -12,22 +12,22 @@ int b[7]={1,2,3,4,5,9,8};
 vector<int> a(b,b+6);    //从数组中获得初值，b[0]~b[5]
 ```
 ### 插入
-```
+```C++
 a.push_back(1);   //尾部插入
 vec.insert(vec.begin()+i,a);  //在第i+1个元素前面插入
 ```
 ### 查找
-```
+```C++
 vector<int>::iterator iter;
 iter=find(v.begin(),v.end(),element);
 std::distance(v.begin(),iter);
 ```
 ### 删除
-```
+```C++
 vec.erase(vec.begin()+2);  //删除第3个元素
 ```
 ### 去重
-```
+```C++
 vector<int>::iterator iter;
 sort(v.begin(), v.end());
 iter = unique(v.begin(), v.end());
@@ -36,21 +36,21 @@ if (iter != v.end()) {
 }
 ```
 ### 交集
-```
+```C++
 vector<int> v;
 sort(v1.begin(),v1.end());   
 sort(v2.begin(),v2.end());   
 set_intersection(v1.begin(),v1.end(),v2.begin(),v2.end(),back_inserter(v));
 ```
 ### 并集
-```
+```C++
 vector<int> v;
 sort(v1.begin(),v1.end());   
 sort(v2.begin(),v2.end());   
 set_union(v1.begin(),v1.end(),v2.begin(),v2.end(),back_inserter(v));
 ```
 ### 排序
-```
+```C++
 #include <algorithm>
 sort(v.begin(), v.end()); //从小到大
 sort(v.begin(), v.end(),greater<int>()); //从大到小
@@ -62,7 +62,7 @@ bool cmp(vector<int>&a,vector<int>&b){
 sort(v.begin(),v.end(),cmp);
 ```
 ## arr，&arr[0]，&arr
-```
+```C++
 int arr[10]={0};
 printf("%p\n",arr);//首元素的地址
 printf("%p\n",arr+1);
@@ -84,6 +84,6 @@ printf("%p\n",&arr+1);
 ### 解题思路
 
 ### 程序
-```
+```C++
 
 ```

@@ -29,7 +29,7 @@
 ## socket()
 ### 代码
 返回一个整数，即套接字描述符。创建失败，则返回-1。
-```
+```C++
 #include <sys/socket.h>
 int socket(int domain, int type, int protocol);
 ```
@@ -47,7 +47,7 @@ int socket(int domain, int type, int protocol);
 3. 当 domain 为 AF_INET，type 为 SOCK_DGRAM 时，默认协议是 UDP。
 4. 如果需要指定特定的协议，可以使用 IPPROTO_TCP 或 IPPROTO_UDP 等常量。
 ## 服务端
-```
+```C++
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -162,7 +162,7 @@ void run_udp_loop(int server_socket) {
 }
 ```
 ## 客户端
-```
+```C++
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -253,7 +253,7 @@ void run_client() {
 ```
 ## 客户端 + 服务端
 会启动一个后台线程进行监听，同时主线程可以用于发送消息。
-```
+```C++
 #include <iostream>
 #include <string>
 #include <cstring>

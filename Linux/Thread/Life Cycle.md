@@ -20,7 +20,7 @@
 3. 只有 execve 是系统调用，其它都是在此基础上经过包装的库函数。
 4. 执行成功后不会返回，因为调用进程的实体已经被新的内容取代，只有进PID 等信息仍保持原样。
 5. 调用失败时，会设置 errno 并返回 -1，然后从原程序的调用点接着往下执行。
-```
+```C
 int execl(const char *path, const char *arg, ...);
 int execlp(const char *file, const char *arg, ...);
 int execle(const char *path, const char *arg, ..., char * const envp[]);

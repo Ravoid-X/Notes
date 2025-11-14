@@ -10,25 +10,25 @@
 ### 分配设备号区域
 1. 使用 alloc_chrdev_region() 向内核申请一个或多个设备号
 2. 通常将 firstminor 设为0，count 设为所需设备数量，内核会自动选择一个未被使用的主设备号，并将第一个设备号存入 dev 所指向的变量中。
-```
+```C
 int alloc_chrdev_region(dev_t *dev, unsigned int firstminor, unsigned int count, const char *name);
 ```
 ### 初始化字符设备结构
 使用 struct cdev 结构体来代表一个字符设备。它将设备号与驱动程序的文件操作函数集连接起来
-```
+```C
 //初始化 cdev 结构体，并将其与 file_operations 结构体关联
 void cdev_init(struct cdev *cdev, const struct file_operations *fops);
 ```
 ### 添加字符设备
 初始化完成后，调用 cdev_add() 函数将设备正式注册到内核中，使其对系统可见
-```
+```C
 //成功返回，用户空间程序就可以通过对应的设备文件来访问它
 int cdev_add(struct cdev *p, dev_t dev, unsigned count);
 ```
 ### 删除
 调用相应的清理函数 cdev_del() 和 unregister_chrdev_region() 来释放这些资源
 ### 示例
-```
+```C
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/cdev.h>
@@ -80,7 +80,7 @@ MODULE_DESCRIPTION("A skeleton character device driver");
 ## file_operations
 字符驱动程序的核心，是一个包含函数指针的结构体，定义了驱动程序如何响应对设备文件的各种系统调用。
 ### 结构
-```
+```C
 static const struct file_operations my_fops = {
   .owner   = THIS_MODULE,
   .open    = my_open,
@@ -100,7 +100,7 @@ static const struct file_operations my_fops = {
 2. 负责执行清理工作，如释放 open 方法中分配的资源，并调用 module_put(THIS_MODULE) 来减少模块的引用计数。
 ### read & write
 驱动程序数据交互的核心，函数原型定义了与用户空间交互的标准接口
-```
+```C
 ssize_t (*read) (struct file *, char __user *, size_t, loff_t *);
 ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);
 ```
@@ -110,12 +110,12 @@ ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);
 4. loff_t *off：指向文件偏移量的指针，驱动需要根据它来读写正确的位置，并更新它。
 ### copy_to_user()
 从内核空间拷贝 n 字节数据到用户空间
-```
+```C
 copy_to_user(void __user *to, const void *from, unsigned long n);
 ```
 ### copy_from_user()
 从用户空间拷贝 n 字节数据到内核空间
-```
+```C
 copy_from_user(void *to, const void __user *from, unsigned long n);
 ```
 ### copy 传输验证
@@ -126,7 +126,7 @@ copy_from_user(void *to, const void __user *from, unsigned long n);
 （3）此时，它会中止拷贝操作，并让 copy_*_user() 函数返回一个非零值，表示有多少字节未能成功拷贝。
 ## “回显”字符驱动程序
 任何写入该设备的数据都会被存储在一个内核缓冲区中，当从设备读取时，这些数据会被返回给用户。
-```
+```C
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/cdev.h>

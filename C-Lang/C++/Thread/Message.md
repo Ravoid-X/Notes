@@ -14,7 +14,7 @@
 （2）当生产者向队列中放入一个新消息后，它需要通知正在等待的消费者
 ## 示例
 ### message.h
-```
+```C++
 #pragma once
 #include <iostream>
 #include <string>
@@ -43,7 +43,7 @@ private:
 };
 ```
 ### message.cpp
-```
+```C++
 #include "message.h"
 #include <chrono>
 void MessageQueue::pushMessage(const Message& msg) {
@@ -73,7 +73,7 @@ bool MessageQueue::isEmpty() const {
 }
 ```
 ### main.cpp
-```
+```C++
 #include "message.h"
 #include <vector>
 #include <atomic>

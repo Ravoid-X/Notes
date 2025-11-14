@@ -1,6 +1,6 @@
 友元不能继承
 ## 友元函数
-```
+```C++
 friend void friendFunction(const MyClass& obj);
 ```
 1. 在类中声明的一个非成员函数。可以访问该类的私有成员，包括私有变量和私有函数。
@@ -8,7 +8,7 @@ friend void friendFunction(const MyClass& obj);
 3. 在 public 或 private 中进行声明都可以。
 
 ## 友元类
-```
+```C++
 class MyClass;
 
 class FriendClass {

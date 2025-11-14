@@ -1,9 +1,8 @@
 ## 类定义  
 <img src="../../../pic/C-Lang/C++/Class/classes-define.png" style="width:400px;padding:10px;"/>
 
-```
-class Line
-{   
+```C++
+class Line{   
     public:
         void setLength( double len );
         double getLength( void );
@@ -29,7 +28,7 @@ class Line
 ## 成员函数
 1. 类内定义：函数默认为内联，，即便没有使用 inline 标识符
 2. 类外定义：需使用使用范围解析运算符 ::
-```
+```C++
 double getLength( void ){
     return length;
 }

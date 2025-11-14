@@ -16,7 +16,7 @@ MySQL 8.4 与 CMake 3.15，会报错 "No "FindMySQL.cmake" found in CMAKE_MODULE
 1. 既然 find_package 无法工作，就完全绕过它。
 2. 修改 CMakeLists.txt，让它自己去运行 /usr/bin/mysql_config
 3. 将其输出结果直接保存到 CMake 变量（MySQL_INCLUDE_DIRS 和 MySQL_LIBRARIES）中
-```
+```CMake
 if(USE_MYSQL)
     message(STATUS "MYSQL is ENABLED")
     # 1. 找到已经安装的 mysql_config 程序

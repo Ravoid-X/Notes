@@ -48,13 +48,13 @@
 
 ## 操作
 ### 查看
-```
+```Bash
 ps axj		#查看系统中的守护进程
 ps axj |grep daemon	#使用管道过滤想要查看的守护进程
 ```
 
 ## 创建实例
-```
+```C++
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <sstream>

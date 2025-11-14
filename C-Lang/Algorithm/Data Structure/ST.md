@@ -6,7 +6,7 @@
 （2）区间 [L, R] 可以被 $[L,L+2^k-1]$ 和 $[R-2^k+1,R]$ 完全覆盖\
 （3）$query(L, R) = min(st[L][k], st[R - (1 << k) + 1][k])$
 ### 程序
-```
+```C++
 void build_st() {
     // Base Case: j = 0, 区间长度为 1
     for (int i = 0; i < n; ++i) {

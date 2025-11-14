@@ -2,7 +2,7 @@
 由编译器自动执行的，不需要程序员显式指定
 ### 算术转换
 在混合类型的算术表达式中，较小的类型会提升为较大的类型
-```
+```C++
 int i = 5;
 double d = 3.14;
 double result = i + d; // i 被隐式转换为 double (5.0)
@@ -11,14 +11,14 @@ double result = i + d; // i 被隐式转换为 double (5.0)
 2. 将 double(3.14) 转为 int(3) 会丢失 .14 的精度；将 int(5) 转为 double(5.0) 不会丢失信息
 3. 编译器创建了一个临时的 double 值 5.0，再进行计算
 ### 赋值转换
-```
+```C++
 int i;
 double d = 10.5;
 i = d; // i 值为 10
 ```
 赋值操作中规则是目标类型优先，编译器被强制将右侧的值转换为左侧的类型，即使这会导致信息丢失。
 ### 构造函数转换
-```
+```C++
 class MyString {
 public:
     // 这是一个“转换构造函数”
@@ -37,7 +37,7 @@ printString("Hello");
 ## 显式转换
 当隐式转换不可行或想明确表达意图（即使会丢失数据）时使用
 ### C 风格转换
-```
+```C++
 double d = 3.14;
 int i = (int)d; // C 风格
 int j = int(d); // 函数风格 (功能上与 C 风格相同)
@@ -47,19 +47,19 @@ int j = int(d); // 函数风格 (功能上与 C 风格相同)
 ### static_cast (静态转换)
 在编译时进行类型检查，用于合理或相关的类型转换
 1. 数值转换（显式截断）
-```
+```C++
 double d = 3.14;
 int i = static_cast<int>(d); // i = 3
 ```
 2. void* 指针转换：void* 丢失了类型信息，static_cast 是 C++ 中将 void* 指针转回其原始类型的标准方式。
-```
+```C++
 int i = 10;
 void* p = &i;
 int* pi = static_cast<int*>(p);
 cout << *pi; // 输出 10
 ```
 3. 类继承转换（下行转换）：编译器不做任何运行时检查
-```
+```C++
 class Base { public: int b_val; };
 class Derived : public Base { public: int d_val; };
 Base* b = new Derived(); // OK，隐式上行转换
@@ -69,7 +69,7 @@ d_ptr->d_val = 100; // OK
 ```
 ### dynamic_cast
 在运行时进行类型检查，专门用于多态类的安全下行转换。
-```
+```C++
 class Base { 
 public: 
     virtual void foo() {} // 必须是多态基类
@@ -79,7 +79,7 @@ class Derived : public Base {};
 class Another : public Base {};
 ```
 1. 指针转换
-```
+```C++
 Base* b_ptr = new Derived();
 // 尝试转换为 Derived* (成功)
 Derived* d_ptr = dynamic_cast<Derived*>(b_ptr); 
@@ -93,7 +93,7 @@ if (a_ptr == nullptr) {
 }
 ```
 2. 引用转换
-```
+```C++
 Derived d_obj;
 Base& b_ref = d_obj; // b_ref 引用一个 Derived 对象
 try {
@@ -108,7 +108,7 @@ try {
 ```
 ### const_cast
 唯一能添加或（通常是）移除 const 或 volatile 属性的转换
-```
+```C++
 // 假设这是一个不规范的 C 库函数，承诺不修改，但忘了加 const
 void legacy_c_function(char* str) { /* 它只是读取 str */ }
 const char* my_str = "Hello";
@@ -123,7 +123,7 @@ legacy_c_function(const_cast<char*>(my_str));
 1. 告诉编译器：把这块内存中的二进制位模式当做另一种类型来解释
 2. 不做任何有意义的转换，只是原始的位重解释，十分危险
 3. 不相关指针转换
-```
+```C++
 int i = 65; // 'A' 的 ASCII 码
 int* pi = &i;
 // 将 int* 重新解释为 char*
@@ -134,7 +134,7 @@ char* p_c = reinterpret_cast<char*>(pi);
 （3）如果是大端机器，*p_c 会读取 0x00（空字符 \0）\
 （4）reinterpret_cast 几乎总是导致不可移植的代码
 4. 指针与整数互转
-```
+```C++
 int i = 10;
 int* pi = &i;
 // 1. 将指针转换为整数

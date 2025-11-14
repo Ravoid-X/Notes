@@ -4,7 +4,7 @@
 1. 计算拉普拉斯算子响应的方差，其对图像中的边缘和噪声非常敏感。
 2. 清晰的图像具有锐利的边缘，经过拉普拉斯算子处理后，会产生大量的高响应值。因此，整张图的像素值方差会很大。
 ### 代码
-```
+```C++
 double calculateBlurScore(const cv::Mat& image) {
     cv::Mat gray, laplacian;
     cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY); // 转换为灰度图

@@ -3,7 +3,7 @@
 2. 这块“丢失了地址”且“无法被再次使用”的内存，就是泄漏的内存。
 ## 发生原因
 ### 忘记 delete
-```
+```C++
 void memory_leak_simple() {
     int* p = new int(5);
     // 忘记调用 delete p;
@@ -11,7 +11,7 @@ void memory_leak_simple() {
 ```
 ### 指针被覆盖
 在释放内存前，将指针指向了另一块内存或 nullptr
-```
+```C++
 void memory_leak_overwrite() {
     int* p1 = new int[10];
     int* p2 = new int(100);
@@ -24,7 +24,7 @@ void memory_leak_overwrite() {
 ```
 ### 函数提前返回
 在 new 和 delete 之间，函数因为某些条件判断而提前 return
-```
+```C++
 bool process_data() {
     MyObject* obj = new MyObject();
     if (!obj->is_valid()) {
@@ -37,7 +37,7 @@ bool process_data() {
 ```
 ### 抛出异常（最隐蔽）
 如果在 new 之后、delete 之前，代码块中抛出了一个异常，而这个异常没有被捕获并妥善处理，那么 delete 语句将永远不会被执行。
-```
+```C++
 void memory_leak_exception() {
     MyObject* obj = new MyObject(); 
     try {

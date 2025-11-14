@@ -1,6 +1,6 @@
 ## operator new 和 operator delete
 C++ 语言标准库的库函数，原型分别如下
-```
+```C++
 void *operator new(size_t);     //allocate an object
 void *operator delete(void *);    //free an object
 
@@ -13,7 +13,7 @@ void *operator delete[](void *);    //free an array
 1. 在堆上分配足够容纳该对象的内存空间。
 2. 调用该对象的构造函数在这块内存上初始化对象
 ### 示例
-```
+```C++
 int* p_int = new int(10);
 ```
 ## new[]
@@ -22,7 +22,7 @@ int* p_int = new int(10);
 2. （关键点） 在这块内存的开始位置（通常是前几个字节），额外存储数组的大小。
 3. 循环调用默认构造函数，在内存块上依次初始化数组中的每一个对象。
 ### 示例
-```
+```C++
 int* p_int_array = new int[5]; // 分配 5 个int的内存
 MyClass* p_obj_array = new MyClass[3];
 ```
@@ -32,7 +32,7 @@ MyClass* p_obj_array = new MyClass[3];
 1. 调用该对象的析构函数清理资源。
 2. 将该对象占用的内存返还给堆。
 ### 示例
-```
+```C++
 delete p_int;   // 释放p_int指向的内存
 p_int = nullptr; // 防止悬空指针
 ```
@@ -42,7 +42,7 @@ p_int = nullptr; // 防止悬空指针
 2. 逆序循环调用数组中每一个对象的析构函数（从最后一个元素到第一个）。
 3. 将整个内存块（包括存储数组大小的头部）返还给堆。
 ### 示例
-```
+```C++
 delete[] p_int_array;
 p_int_array = nullptr;
 ```

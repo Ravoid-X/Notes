@@ -1,7 +1,7 @@
 ## kmalloc()
 内核中最常用的内存分配函数
 ### 原型
-```
+```C
 #include <linux/slab.h>
 void *kmalloc(size_t size, gfp_t flags);
 void kfree(const void *addr);
@@ -30,7 +30,7 @@ void kfree(const void *addr);
 2. 需要高性能、频繁分配和释放的小型内核数据结构 
 ## vmalloc()
 ### 原型
-```
+```C
 #include <linux/vmalloc.h>
 //内核会自动将其向上舍入到页的整数倍
 void *vmalloc(unsigned long size);

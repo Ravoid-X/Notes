@@ -1,6 +1,6 @@
 ## state_types.h
 定义一个枚举来表示所有的状态
-```
+```C++
 #pragma once
 
 enum class StateType {
@@ -11,7 +11,7 @@ enum class StateType {
 ```
 ## state_base.h
 定义了每个状态必须遵守的接口
-```
+```C++
 #pragma once
 
 #include "message.h"
@@ -45,14 +45,14 @@ protected:
 };
 ```
 ## state_base.cpp
-```
+```C++
 #include "state_base.h"
 
 StateBase::StateBase(StateMachine* stateMachine)
     : m_stateMachine(stateMachine) {}
 ```
 ## state_machine.h
-```
+```C++
 #pragma once
 
 #include "state_base.h"
@@ -74,7 +74,7 @@ private:
 };
 ```
 ## state_machine.cpp
-```
+```C++
 #include "state_machine.h"
 #include "state_begin.h"
 #include "state_processing.h" // 包含所有具体的状态头文件
@@ -127,7 +127,7 @@ void StateMachine::changeState(StateType newState) {
 }
 ```
 ## state_begin.h
-```
+```C++
 #pragma once
 
 #include "state_base.h"
@@ -143,7 +143,7 @@ public:
 };
 ```
 ## state_begin.cpp
-```
+```C++
 #include "state_begin.h"
 #include "state_machine.h"
 #include <iostream>
@@ -171,7 +171,7 @@ void StateBegin::handleError(const string& error) {
 }
 ```
 ## main.cpp
-```
+```C++
 #include "message.h"
 #include "state_machine.h" 
 #include <vector>

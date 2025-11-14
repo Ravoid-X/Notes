@@ -1,12 +1,12 @@
 ## “#include”
 查看后面的文件名并把文件的内容包含到当前文件中
 ## 尖括号
-```
+```C++
 #include <stdio.h>
 ```
 在 UNIX 系统中，尖括号告诉预处理器在标准系统目录中查找该文件
 ## 双引号
-```
+```C++
 #include "mystuff.h"
 #include "/usr/biff/mystuff.h"
 ```

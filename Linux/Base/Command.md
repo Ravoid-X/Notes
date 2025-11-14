@@ -21,7 +21,7 @@
 `chmod u=rwx, g=rx, o=x`\
 `chmod o+w 文件目录名`
 4. 方式二：通过数字\
-```
+```Bash
 chmod u = rwx, g = rx, o = x 文件目录名 //等价于
 chmod 751 文件目录名
 ```

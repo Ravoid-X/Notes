@@ -2,11 +2,11 @@
 ``#include <map> ``
 map的底层是红黑树，因此 map 内部所有的数据都是有序的，查询、插入、删除操作的时间复杂度都是O(logn)。
 ### 创建
-```
+```C++
 std:map<int, string> stu;
 ```
 ### 插入
-```
+```C++
 // 用insert函數插入pair，已有关键字时，insert无法插入
 stu.insert(pair<int, string>(000, "stu_zero"));
 // 用insert函数插入value_type数据
@@ -16,7 +16,7 @@ stu[123] = "stu_first";
 stu[456] = "stu_second";
 ```
 ### 查找
-```
+```C++
 map<int,string>::iterator iter; 
 iter = stu.find("123");
 cout<<"Find, the value is"<<iter->second<<endl;
@@ -24,7 +24,7 @@ stu.find(key) == stu.end(); //如果key不存在，则find返回map::end
 stu.count(key);   //与上等价
 ```
 ### 删除
-```
+```C++
 stu.erase(iter);  //迭代器刪除
 //用关键字刪除，刪除了會返回1，否則返回0
 int n = stu.erase("123"); 

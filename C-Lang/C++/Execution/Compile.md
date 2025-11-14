@@ -25,7 +25,7 @@
 5. 生成汇编代码：将优化后的代码转换成目标平台的汇编语言。
 ### 输出
 1. 指令： 
-```
+```Bash
 g++ -S hello.i -o hello.s
 # 或者直接从cpp开始
 # g++ -S hello.cpp -o hello.s
@@ -63,7 +63,7 @@ g++ -S hello.i -o hello.s
 （2）缺点：依赖外部环境。
 ### 输出
 1. 指令
-```
+```Bash
 g++ hello.o -o hello
 # 或者，最常用的一步到位命令
 # g++ hello.cpp -o hello
@@ -71,12 +71,12 @@ g++ hello.o -o hello
 2. 一个可执行文件 (在Linux/macOS上通常没有扩展名，如 hello；在Windows上是 .exe，如 hello.exe)
 ### 静态链接库
 1. 全局静态链接：尝试将所有库（包括系统库如 libc）都进行静态链接
-```
+```Bash
 g++ main.cpp -L./lib -lmath -static -o app_static
 -l：告诉链接器去链接一个库（library）。
 math：库的规范名。链接器会自动加上 lib 前缀和 .a 或 .so后缀，也就是寻找 libmath.a 或 libmath.so 文件。
 ```
 2. 局部静态链接：在命令行中给出静态库文件的完整路径或相对路径
-```
+```Bash
 g++ main.cpp ./lib/libmath.a -o app_static
 ```

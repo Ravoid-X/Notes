@@ -5,7 +5,7 @@
 ### 解题思路
 先手必败当且仅当 $N mod (L+R) <L$；否则先手必胜。
 ### 程序
-```
+```C++
 vector<bool> res(T);
 for(size_t i=0;i<T;i++){
     cin>>n>>l>>r;

@@ -7,7 +7,7 @@
 ### throw
 1. 用于抛出一个异常，将错误信息传递给异常处理机制。
 2. 抛出的异常对象可以是任何类型的对象，通常情况下是异常类的实例。
-```
+```C++
 throw runtime_error("An error occurred");
 ```
 ### try
@@ -16,7 +16,7 @@ throw runtime_error("An error occurred");
 ### catch
 1. 用于捕获并处理从 try 块中抛出的异常。
 2. 一个 try 块可以有多个 catch 块，它们用于捕获不同类型的异常。
-```
+```C++
 try {
     throw runtime_error("An error occurred");
 } catch (const runtime_error& e) {

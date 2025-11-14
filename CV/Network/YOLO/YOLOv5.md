@@ -107,7 +107,7 @@ v4.0 版本之前的 BottleneckCSP，用 LeakyReLU 作为激活函数，之后�
 # 训练数据格式
 ## yaml 文件
 数据集配置文件，通常放在 data 目录下，示例如下
-```
+```YAML
 train: /path/to/your/dataset/images/train
 val: /path/to/your/dataset/images/val
 # 类别数量

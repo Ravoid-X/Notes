@@ -2,17 +2,17 @@
 基于红黑树实现，具有自动排序的功能
 ``#include <set>``
 ### 创建
-```
+```C++
 set<int> st;
 ```
 ### 添加
-```
+```C++
 st.insert(4);     //插入元素
 set<int>::iterator it = st.begin();
 st.insert(it, 2); //任意位置插入
 ```
 ### 删除
-```
+```C++
 st.pop_back(4); // 删除值为 4 的元素
 set<int>::iterator it = st.begin();
 st.erase(it);   //任意位置删除
@@ -20,7 +20,7 @@ st.erase(iterator first, iterator last); //删除区间
 st.clear();     //清空
 ```
 ### 查找
-```
+```C++
 set<int>::iterator it;
 it = st.find(2);
 cout << *it << endl; // 输出：2
@@ -31,7 +31,7 @@ st.count(key); //键 key 的元素个数
 ### upper_bound
 返回数组中大于 val 的第一个元素的地址，若均小于等于 val 则返回尾后地址
 ### 遍历
-```
+```C++
 for(auto it = s.begin(); it != s.end(); ++it) {
     std::cout << *it << " ";
 }

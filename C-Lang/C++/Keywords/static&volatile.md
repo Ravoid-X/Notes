@@ -27,7 +27,7 @@
 2. 阻止编译器对该变量的读/写操作进行优化，确保每次访问该变量时，程序都会强制重新从内存地址读取最新的值，而不是使用 CPU 寄存器中缓存的旧值。
 ## 没有 volatile
 ### 示例
-```
+```C++
 bool device_ready = false;
 // 模拟的硬件中断或另一个线程，会在某个时刻改变 device_ready 的值
 void simulate_external_change() {
@@ -52,7 +52,7 @@ void wait_for_device() {
 2. 但 wait_for_device 函数却卡在了一个只检查 CPU 寄存器中旧值的死循环里
 ## 有 volatile
 ### 示例
-```
+```C++
 volatile bool device_ready = false;
 
 void simulate_external_change() {

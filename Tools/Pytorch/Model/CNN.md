@@ -1,5 +1,5 @@
 ## 基本单元
-```
+```C++
 inline torch::nn::Conv2dOptions conv_options(int64_t in_planes, int64_t out_planes, int64_t kerner_size,
     int64_t stride = 1, int64_t padding = 0, bool with_bias = false) {
     torch::nn::Conv2dOptions conv_options = torch::nn::Conv2dOptions(in_planes, out_planes, kerner_size);
@@ -9,7 +9,7 @@ inline torch::nn::Conv2dOptions conv_options(int64_t in_planes, int64_t out_plan
     return conv_options;
 }
 ```
-```
+```C++
 class ConvReluBnImpl : public torch::nn::Module {
 public:
     ConvReluBnImpl(int input_channel=3, int output_channel=64, int kernel_size = 3, int stride = 1);
@@ -34,7 +34,7 @@ torch::Tensor ConvReluBnImpl::forward(torch::Tensor x) {
 }
 ```
 ## 例子
-```
+```C++
 class plainCNN : public torch::nn::Module{
 public:
     plainCNN(int in_channels, int out_channels);

@@ -1,14 +1,14 @@
 ## 定义
 其中的各对象按线性顺序排列，顺序是由各个对象里的指针决定。
 ## 创建节点
-```
+```C++
 struct ListNode{
 	int data;
 	ListNode *next;
 }listnode;
 ```
 ## 创捷链表
-```
+```C++
 ListNode* ListCreate(int n){
 	ListNode *head,*p1,*end;
 	head=new ListNode;
@@ -24,7 +24,7 @@ ListNode* ListCreate(int n){
 }
 ```
 ## 遍历链表
-```
+```C++
 void print(ListNode *head){
 	ListNode *temp;
 	temp=head->next;
@@ -35,7 +35,7 @@ void print(ListNode *head){
 }
 ```
 ## 修改节点
-```
+```C++
 void ListChange(ListNode *head,int n,int temp){
 	ListNode *p=head;
 	for(int i=0;i<n&&p!=NULL;i++){
@@ -48,7 +48,7 @@ void ListChange(ListNode *head,int n,int temp){
 }
 ```
 ## 插入节点
-```
+```C++
 ListNode* ListInsert(ListNode *head,int n,int data){
 	ListNode *p=head;
 	ListNode *in=new ListNode;
@@ -64,7 +64,7 @@ ListNode* ListInsert(ListNode *head,int n,int data){
 }
 ```
 ## 删除节点
-```
+```C++
 void ListDelete(ListNode *head,int n){
 	ListNode *p=head,*p1=head;
 	for(int i=0;i<n&&p!=NULL;i++){

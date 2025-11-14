@@ -9,7 +9,7 @@
 （1）乘法：mul *= x，add *= x\
 （2）加法：mul不变，add += x
 ### 程序
-```
+```C++
 struct Node {
     int sum; //该节点区间的和
     ll add; 

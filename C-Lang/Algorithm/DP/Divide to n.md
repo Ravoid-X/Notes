@@ -7,7 +7,7 @@
 3. 由于长度差可正可负，用 offset = totalSum，将 dp 数组的索引映射到 [0, 2 * totalSum]
 4. 遍历完所有钢筋后，dp[0 + offset] 的值就代表了当两个支架长度差为 0 时，第一个支架的最大长度。
 ### 程序
-```
+```C++
 int findMax(const vector<int>& rods) {
     int totalSum = accumulate(rods.begin(), rods.end(), 0);
     // dp[diff + offset] 存储当支架1长度 - 支架2长度 = diff 时，支架1的最大长度

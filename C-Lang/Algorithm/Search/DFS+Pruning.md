@@ -5,7 +5,7 @@
 ### 解题思路
 
 ### 程序
-```
+```C++
 short n;
 vector<int> ln;
 vector<bool> used;

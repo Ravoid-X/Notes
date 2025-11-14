@@ -1,5 +1,5 @@
 ## 示例
-```
+```C++
 class Widget{
 public:
     Widget& operator=(const Widget& rhs);//赋值运算符
@@ -18,7 +18,7 @@ b = Widget(); // 调用移动赋值运算符( Widget() 是右值)
 2. 如果没有显式定义，编译器会自动生成。默认的运算符会执行成员级别的逐个拷贝。
 3. 对于指针成员，这只会拷贝指针的地址，会导致悬挂指针等问题。
 ### 代码
-```
+```C++
 Widget& Widget::operator=(const Widget& rhs) { 
     // 防止自我赋值 
     // 如果没有检查，后续释放内存再访问就会导致程序崩溃。
@@ -43,7 +43,7 @@ Widget& Widget::operator=(const Widget& rhs) {
 1. 从一个对象中转移资源到另一个对象，而不是进行复制操作。
 2. 通常与右值引用一起使用，以实现高效的资源转移，提高性能。
 ### 代码
-```
+```C++
 Widget& Widget::operator=(Widget&& rhs) { 
     // 防止自我赋值 (a = std::move(a);)
     if (this == &rhs) {

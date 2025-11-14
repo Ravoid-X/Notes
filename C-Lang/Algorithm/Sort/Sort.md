@@ -1,5 +1,5 @@
-# 快速排序（Quicksort）
-````
+# 快速排序（Quicksort）(pending)
+```C++
 void quick_sort(vector<int> &nums, int l, int r) {
     if (l + 1 >= r) {
         return;
@@ -19,24 +19,24 @@ void quick_sort(vector<int> &nums, int l, int r) {
     quick_sort(nums, l, first);
     quick_sort(nums, first + 1, r);
 }
-````
+```
 可使用标准库函数std::sort(begin, end, cmp)，类似快排
 1. arr
-   ````
+   ```C++
    static bool cmp1(int &lhs,int &rhs)//升序
    {
 	  return lhs<rhs;
    }
    sort(arr,arr+10,cmp+1);
-   ````
+   ```
 2. vector
-   ````
-   ````
+   ```C++
+   ```
 3. map
-   ````
-   ````
+   ```C++
+   ```
 # 归并排序（Merge Sort）
-````
+```C++
 void merge_sort(vector<int> &nums, int l, int r, vector<int> &temp) {
     if (l + 1 >= r) {
         return;
@@ -58,9 +58,9 @@ void merge_sort(vector<int> &nums, int l, int r, vector<int> &temp) {
         nums[i] = temp[i];
     }
 }
-````
+```
 # 插入排序（Insertion Sort）
-````
+```C++
 void insertion_sort(vector<int> &nums, int n) {
     for (int i = 0; i < n; ++i) {
         for (int j = i; j > 0 && nums[j] < nums[j-1]; --j) {
@@ -68,9 +68,9 @@ void insertion_sort(vector<int> &nums, int n) {
         }
     }
 }
-````
+```
 # 冒泡排序（Bubble Sort）
-````
+```C++
 void bubble_sort(vector<int> &nums, int n) {
     bool swapped;
     for (int i = 1; i < n; ++i) {
@@ -86,9 +86,9 @@ void bubble_sort(vector<int> &nums, int n) {
         }
     }
 }
-````
+```
 # 选择排序（Selection Sort）
-````
+```C++
 void selection_sort(vector<int> &nums, int n) {
     int mid;
     for (int i = 0; i < n - 1; ++i) {
@@ -101,9 +101,9 @@ void selection_sort(vector<int> &nums, int n) {
         swap(nums[mid], nums[i]);
     }
 }
-````
+```
 # 调用方法
-````
+```C++
 void sort() {
     vector<int> nums = {1,3,5,7,2,6,4,8,9,2,8,7,6,0,3,5,9,4,1,0};
     vector<int> temp(nums.size());
@@ -114,7 +114,7 @@ void sort() {
     bubble_sort(nums, nums.size());
     selection_sort(nums, nums.size());
 }
-````
+```
 # 快速选择
 
 # 桶排序

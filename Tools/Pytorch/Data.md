@@ -1,5 +1,5 @@
 ## 图片文件遍历
-```
+```C++
 //遍历该目录下的.jpg图片
 void load_data_from_folder(string image_dir, string type, vector<string> &list_images, vector<int> &list_labels, int label);
 void load_data_from_folder(string path, string type, vector<string> &list_images, vector<int> &list_labels, int label){
@@ -32,7 +32,7 @@ void load_data_from_folder(string path, string type, vector<string> &list_images
 }
 ```
 ## 自定义 Dataset
-```
+```C++
 class dataSetClc:public torch::data::Dataset<dataSetClc>{
 public:
     int class_index = 0;

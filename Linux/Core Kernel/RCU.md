@@ -13,7 +13,7 @@
 三大机制 Read, Copy-Update, Grace Period，以链表删除举例
 ## Read
 ### 示例
-```
+```C++
 // 1. 声明进入 RCU 读侧临界区
 rcu_read_lock();
 // 2. 安全地获取指针
@@ -31,7 +31,7 @@ rcu_read_unlock();
 写者的工作分为两部分：移除 和 回收
 ### 示例
 假设从链表 A -> B -> C 中删除节点 B
-```
+```C++
 // 假设 g_head 指向 A
 struct my_data *node_b = find_node_b(); // 找到 B
 struct my_data *node_a = find_node_a(); // 找到 B 的前驱 A

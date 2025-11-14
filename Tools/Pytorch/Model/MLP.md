@@ -1,5 +1,5 @@
 ## 基本单元
-```
+```C++
 class LinearBnReluImpl : public torch::nn::Module{
 public:
     LinearBnReluImpl(int input_features, int output_features);
@@ -23,7 +23,7 @@ torch::Tensor LinearBnReluImpl::forward(torch::Tensor x){
 1. 自定义的神经网络模块必须继承自torch::nn::Module，提供了必要的功能，如参数注册、子模块管理、模型保存/加载等。
 2. ln->forward(x)，输入进行矩阵乘法和偏置加法
 ## 例子
-```
+```C++
 class MLP: public torch::nn::Module{
 public:
     MLP(int in_features, int out_features);

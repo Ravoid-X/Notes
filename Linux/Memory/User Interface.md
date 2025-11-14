@@ -40,7 +40,7 @@ sbrk(x)：将程序中断点增加 x 字节（ x 可以为负数以缩小堆）
 （3）初始值仍为 128KB，但会根据程序的运行情况进行调整。\
 （4）如当一个通过 mmap() 分配的大块内存被 free() 时，会调高 M_MMAP_THRESHOLD，使其等于或略大于刚被释放的块的大小。
 ### 代码
-```
+```C
 //定义要分配的内存大小，mmap 分配的长度通常是页大小的倍数
 #include <sys/mman.h> // mmap, munmap
 #include <unistd.h>   // sysconf, _SC_PAGE_SIZE

@@ -4,7 +4,7 @@
 ## 函数重载
 1. 在同一个作用域内，可以声明几个功能类似的同名函数，这些同名函数的形参列表（参数的个数、类型或者顺序）必须不同。
 2. 不能仅通过返回类型的不同来重载函数，无法区分要调用的是谁。
-```
+```C++
 void Swap(int* a, int* b)
 {
 	int temp = *a;
@@ -21,7 +21,7 @@ void Swap(double* a, double* b)
 
 # 运算符重载
 ## 引出
-```
+```C++
 Complex c1(2, 3);
 Complex c2(4, 1);
 Complex sum = c1.add(c2);
@@ -36,7 +36,7 @@ Complex sum = c1.add(c2);
 
 ## 作为成员函数
 左操作数隐式地是调用该函数的对象本身（即 *this）
-```
+```C++
 class Point {
 public:
     int x, y;
@@ -53,7 +53,7 @@ public:
 ## 作为非成员函数
 需要接收所有的操作数作为参数
 ### 左侧操作数不是类的对象 (强制情况)
-```
+```C++
 class A {
 private:
     int x, y; 
@@ -71,12 +71,12 @@ int main() {
 }
 ```
 ### 支持对称的隐式类型转换(设计更佳)
-```
+```C++
 Number n(10);
 Number result1 = n + 5; // OK. 解释为 n.operator+(5)
 Number result2 = 5 + n; // Error! 编译器尝试解释为 5.operator+(n)
 ```
-```
+```C++
 class Number {
 public:
     int value;
@@ -89,7 +89,7 @@ Number operator+(const Number& lhs, const Number& rhs) {
 }
 ```
 ### 增强封装性与接口分离
-```
+```C++
 //operator+= 通常会修改对象自身的状态
 //operator+ 创建并返回一个新对象，可以基于 += 来实现 +。
 class DataBlock {

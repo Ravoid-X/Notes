@@ -5,22 +5,22 @@
 3. 提供了一种线程安全的方式来访问和修改共享数据，而无需使用显式的互斥锁。
 ## 使用
 ### 创建
-```
+```C++
 atomic<int> atomicInt(0);
 atomic<bool> atomicBool(true);
 ```
 ### 读取
-```
+```C++
 int value = atomicInt.load();
 bool flag = atomicBool.load();
 ```
 ### 修改
-```
+```C++
 atomicInt.store(42);
 atomicBool.store(false);
 ```
 ### 加法举例
-```
+```C++
 atomic<int> atomicValue(0);
 int increment = 5;
 int result = atomicValue.fetch_add(increment);
@@ -28,7 +28,7 @@ int result = atomicValue.fetch_add(increment);
 ## 常见应用场景
 ### 计数器
 在多线程环境中,可以使用 fetch_add 和 fetch_sub 来安全地增减计数器的值。
-```
+```C++
 atomic<int> counter(0);
 counter.fetch_add(1);
 // 线程2减少计数器
@@ -36,7 +36,7 @@ counter.fetch_sub(1);
 ```
 ### 控制标志
 用于控制线程的启动和停止，可以使用 load 和 store 来读取和修改标志的状态。
-```
+```C++
 atomic<bool> flag(true);
 if (flag.load()) {
     // 执行操作
@@ -45,7 +45,7 @@ flag.store(false);
 ```
 ### 链表和数据结构
 此例中两个线程同时增加一个原子计数器的值，而不需要显式的互斥锁
-```
+```C++
 atomic<int> atomicCounter(0);
 void incrementCounter() {
     for (int i = 0; i < 10000; ++i) {

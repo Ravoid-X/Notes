@@ -1,5 +1,5 @@
-## .h
-```
+## .hpp
+```C++
 //和前面章节一致，定义一个确定conv超参数的函数
 inline torch::nn::Conv2dOptions conv_options(int64_t in_planes, int64_t out_planes, int64_t kerner_size,
     int64_t stride = 1, int64_t padding = 0, bool with_bias = false) {
@@ -36,7 +36,7 @@ TORCH_MODULE(VGG);
 VGG vgg16bn(int num_classes);
 ```
 ## .cpp
-```
+```C++
 torch::nn::Sequential make_features(vector<int> &cfg, bool batch_norm){
     torch::nn::Sequential features;
     int in_channels = 3;
@@ -88,7 +88,7 @@ VGG vgg16bn(int num_classes){
 ```
 ## 保存模型
 不能直接用torch.save，这样存下来的模型不能被 c++ 加载，利用部署时常用的t orch.jit.script 模型来保存
-```
+```Python
 import torch
 from torchvision.models import vgg16,vgg16_bn
 model=model.to(torch.device("cpu"))
@@ -98,13 +98,13 @@ traced_script_module = torch.jit.trace(model, var)
 traced_script_module.save("vgg16bn.pt")
 ```
 ## 加载模型
-```
+```C++
 vector<int> cfg_16bn = {64, 64, -1, 128, 128, -1, 256, 256, 256, -1, 512, 512, 512, -1, 512, 512, 512, -1};
 auto vgg16bn = VGG(cfg_16bn,1000,true);
 torch::load(vgg16bn,"your path to vgg16bn.pt");
 ```
 ## 初始化
-```
+```C++
 class Classifier{
 private:
     torch::Device device = torch::Device(torch::kCPU);
@@ -172,7 +172,7 @@ void Classifier::Initialize(int _num_classes, string _pretrained_path){
 }
 ```
 ## 训练
-```
+```C++
 void Classifier::Train(int num_epochs, int batch_size, float learning_rate, string train_val_dir, string image_type, string save_path){
     string path_train = train_val_dir+ "\\train";
     string path_val = train_val_dir + "\\val";
@@ -256,7 +256,7 @@ void Classifier::Train(int num_epochs, int batch_size, float learning_rate, stri
 }
 ```
 ## 预测
-```
+```C++
 int Classifier::Predict(cv::Mat& image){
     cv::resize(image, image, cv::Size(448, 448));
     torch::Tensor img_tensor = torch::from_blob(image.data, { image.rows, image.cols, 3 }, torch::kByte).permute({ 2, 0, 1 });

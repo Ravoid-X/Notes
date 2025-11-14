@@ -10,7 +10,7 @@
 ### 适用场景
 父子进程间简单的单向数据传递
 ### 代码
-```
+```C++
 #include <iostream>
 #include <string>
 #include <unistd.h>    // pipe, fork, read, write, close
@@ -74,7 +74,7 @@ int main() {
 在系统中运行的两个完全不相关的进程（例如，一个守护进程和一个客户端工具）之间进行通信。
 ### 代码
 1. fifo_reader.cpp(必须先运行)
-```
+```C++
 #include <iostream>
 #include <string>
 #include <unistd.h>
@@ -109,7 +109,7 @@ int main() {
 }
 ```
 2. fifo_writer.cpp (后运行)
-```
+```C++
 #include <iostream>
 #include <string>
 #include <unistd.h>
@@ -161,7 +161,7 @@ int main() {
 保护共享内存的“临界区”，确保同一时间只有一个进程在访问。
 ### 代码（共享内存 + 信号量）
 1. shm_synced_writer.cpp
-```
+```C++
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -228,7 +228,7 @@ int main() {
 }
 ```
 2. shm_synced_reader.cpp
-```
+```C++
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -287,7 +287,7 @@ int main() {
 }
 ```
 3. 编译
-```
+```Bash
 g++ shm_synced_writer.cpp -o writer -lrt -lpthread
 g++ shm_synced_reader.cpp -o reader -lrt -lpthread
 ```

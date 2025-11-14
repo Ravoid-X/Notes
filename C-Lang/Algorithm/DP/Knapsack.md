@@ -10,7 +10,7 @@
 2. 设置 $dp2[0]=0$，其它情况设置为最小的Integer型整数，表示不可达状态。
 3. 通过 $if(dp2[j-g[i].v]!=INT_MIN) dp2[j]=max(dp2[j],dp2[j-g[i].v]+g[i].w)$ 更新状态
 ### 程序
-```
+```C++
 struct good{
     short w;
     short v;
@@ -37,7 +37,7 @@ for(int i=0;i<n;++i){
 ### 解题思路
 与 01 背包的唯一区别是内层循环顺序
 ### 程序
-```
+```C++
 for(int j=0;j<n;++j){
     for(int k=g[j].v;k<=m;++k){
         dp[k]=max(dp[k],dp[k-g[j].v]+g[j].w);
@@ -52,7 +52,7 @@ for(int j=0;j<n;++j){
 1. 可以等价为 01背包，把多个数量的同种物品也看成是多个不同种类的物品，但必然超时
 2. 二进制优化：假设某种物品的数量为1000件，拆分成10个种类，每个种类分别包含1、2、4、8、16、32、64、128、256、489件，组合起来可以表示 0-1000 所有数字
 ### 程序
-```
+```C++
 vector<good> items;
 vector<long long> dp(m+1,0);
 for(short j=0;j<n;++j){
@@ -81,7 +81,7 @@ cout<<dp[m]<<endl;
 ### 解题思路
 1. $dp[i][k]$ 在可用时间不超过 $j$、可用精力不超过 $k$ 的前提下，能获得的最大快乐值总和。 
 ### 程序
-```
+```C++
 struct thing{
     short t;
     short h;
@@ -108,7 +108,7 @@ for(short i=0;i<n;++i){
 （2）中层：逆序遍历背包容量\
 （3）内层：遍历组内的每一个物品
 ### 程序
-```
+```C++
 struct item{
     long long w;
     long long v;

@@ -1,6 +1,6 @@
 ## 特殊成员函数
 共有 6 个：构造函数；析构函数；复制构造函数(拷贝构造函数)；赋值运算符(拷贝运算符)；移动构造函数(c++11引入)；移动赋值运算符(c++11引入)
-```
+```C++
 class Widget{
 public:
     Widget();//构造函数
@@ -20,13 +20,13 @@ private：
 3. 构造函数可以重载，不可以被继承。
 4. 构造函数可以带有参数，默认不带参数。
 ### 调用情况
-```
+```C++
 Widget widget; //栈对象
 Widget *w = new Widget();  //堆对象
 Widget w(0，0);  
 ```
 ### 无参&带参
-```
+```C++
 class Widget{
 public:
     Widget();
@@ -53,7 +53,7 @@ int main()
 }
 ```
 ### 参数初始化表
-```
+```C++
 class Widget{
 public:
     Widget():width(0),height(0){}; //无参
@@ -71,20 +71,20 @@ Widget::Widget(int w,int h):width(w),height(h){};
 2. 如果不使用引用，参数将通过值传递。编译器需要先复制一份实参，这会调用拷贝构造函数，从而导致无限递归，最终栈溢出。
 ### 调用
 1. 使用一个对象初始化另一个对象
-```
+```C++
 Widget w1; 
 Widget w2 = w1; // 初始化，调用的不是拷贝赋值运算符。
 Widget w3(w1);  // 更推荐的写法
 //栈上的三个对象 w3, w2, w1 以相反的顺序被析构
 ```
 2. 函数参数是类的对象（值传递）
-```
+```C++
 void func(Widget w){...}{}
 Widget w1; 
 func(w1); //执行结束时，w1 被析构
 ```
 3. 函数按值返回一个对象
-```
+```C++
 Widget func(){
     Widget w1;
     return w1;

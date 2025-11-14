@@ -5,24 +5,24 @@
 ### 编译代码
 为了让 GDB 能够获取到源代码行号、变量名等信息，必须在编译时加入 -g 标志、
 ### 示例
-```
+```Bash
 g++ -g -o my_program my_program.cpp
 ```
 不要在生产环境的最终发布版本中使用，会增大文件体积
 ## 启动/退出 GDB
 ### 启动并加载程序
 最常用，会启动 GDB 并加载 my_program，但不会立即运行它，会看到 GDB 的提示符 (gdb)
-```
+```Bash
 gdb ./my_program
 ```
 ### 附加到已运行的进程
 如果有一个正在运行的程序（例如陷入了死循环）并且想要调试
 1. 找到进程 ID (PID)
-```
+```Bash
 ps aux | grep my_program
 ```
 2. 使用 GDB 附加到它
-```
+```Bash
 gdb -p <PID>
 ```
 ### 退出 GDB
@@ -68,7 +68,7 @@ gdb -p <PID>
 ### 修改变量
 (gdb) set var i = 4 可以在调试时手动修改变量的值，测试特定分支
 ## 示例
-```
+```C++
 // buggy.cpp
 #include <iostream>
 
@@ -89,17 +89,17 @@ int main() {
 }
 ```
 ### 编译
-```
+```Bash
 g++ -g -o buggy buggy.cpp
 ```
 ### 启动
-```
+```Bash
 gdb ./buggy
 (gdb)
 ```
 ### 设置断点
 在 main 函数开始处和循环内部设置断点
-```
+```Bash
 (gdb) b main
 Breakpoint 1 at 0x1165: file buggy.cpp, line 9.
 (gdb) b 13
@@ -107,7 +107,7 @@ Breakpoint 2 at 0x1188: file buggy.cpp, line 13.
 ```
 ### 运行程序
 程序在 main 的开头停下了
-```
+```Bash
 (gdb) run
 Starting program: /path/to/buggy 
 
@@ -116,7 +116,7 @@ Breakpoint 1, main () at buggy.cpp:9
 ```
 ### 单步执行 (n) 
 用 next (n) 走到循环开始前，程序停在了设置的第 2 个断点处（13 行），这是循环的第一次
-```
+```Bash
 (gdb) n
 11          for (i = 0; i < 5; i++) {
 (gdb) n
@@ -124,7 +124,7 @@ Breakpoint 1, main () at buggy.cpp:9
 ```
 ### 查看变量 (p) 
 查看此时 i 和 total 的值
-```
+```Bash
 (gdb) p i
 $1 = 0
 (gdb) p total
@@ -134,14 +134,14 @@ $2 = 0
 1. 看 square 函数内部发生了什么，使用 step (s)
 2. 进入了 square 函数，GDB 告诉我们传入的参数 n 是 1
 3. i 是 0，但传给 square 的是 1，这就是 bug 所在 ( i + 1 )
-```
+```Bash
 (gdb) s
 square (n=1) at buggy.cpp:4
 4           return n * n;
 ```
 ### 完成函数 (fin)
 已经知道 square 内部没问题了，用 finish (fin) 执行完它并返回 main
-```
+```Bash
 (gdb) fin
 Run till exit from #0  square (n=1) at buggy.cpp:4
 0x000055555555518f in main () at buggy.cpp:13
@@ -150,13 +150,13 @@ Value returned is $3 = 1
 ```
 ### 查看堆栈 (bt)
 确认回到了 main 函数
-```
+```Bash
 (gdb) bt
 #0  main () at buggy.cpp:13
 ```
 ### 继续执行 (c) 
 让程序继续运行，会停在循环的下一次（断点 2 处）
-```
+```Bash
 (gdb) c
 Continuing.
 
@@ -164,14 +164,14 @@ Breakpoint 2, main () at buggy.cpp:13
 13              total += square(i + 1);
 ```
 ### 再次查看变量
-```
+```Bash
 (gdb) p i
 $4 = 1
 (gdb) p total
 $5 = 1
 ```
 ### 退出
-```
+```Bash
 (gdb) quit
 A debugging session is active.
 

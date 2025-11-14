@@ -9,7 +9,7 @@
 2. $next[i][j]$ 表示位置 i 走 $2 ^j$ 步后的落点
 3. 将 k 进行二进制分解，即可得到最终落点
 ### 程序
-```
+```C++
 vector<int> p(n);
 vector<vector<int>> next(n, vector<int>(log_k));
 if(count(s.begin(),s.end(),'0')==0){

@@ -11,7 +11,7 @@
 1. 在 mingw64/bin 目录下，将 mingw32-make.exe 复制一份重命名为 make
 2. 在目录下新建一个 build 文件夹，并进入
 3. 指令如下
-```
+```Bash
 cmake -G "MinGW Makefiles"
 make
 ./xxx
@@ -19,7 +19,7 @@ make
 ## MVSC编译
 1. 在目录下新建一个 build 文件夹，并进入
 2. 指令如下
-```
+```Bash
 cmake ..
 cmake --build .
 ./Debug/xxx

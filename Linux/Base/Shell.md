@@ -14,15 +14,15 @@
 2. 在写一些需要高度兼容的脚本时，会使用 sh 语法。
 3. 在 bash 环境中，sh 通常只是一个指向 bash 的符号链接（或 bash 运行在 sh 兼容模式下）
 ### 查看
-```
+```Bash
 echo $SHELL 或 echo $0
 ```
 ## 命令基本结构
-```
+```Bash
 command -options arguments
 ```
 ### 示例
-```
+```Bash
 ls -l /home
 ls: 命令，要执行的程序。
 -l: 选项，用来调整命令的行为（这里是“长列表”格式）。
@@ -45,7 +45,7 @@ ls: 命令，要执行的程序。
 ## 管道 (Pipes |)
 管道 | 将前一个命令的 stdout 连接到后一个命令的 stdin
 ### 示例
-```
+```Bash
 ps aux | grep "nginx"
 ```
 1. ps aux: 列出系统上所有正在运行的进程（产生大量输出到 stdout）。
@@ -66,14 +66,14 @@ ps aux | grep "nginx"
 决定了 Shell 是否以及如何进行展开
 ### `"`(双引号 - "弱"引用)
 会进行变量展开和命令替换，但会阻止通配符展开和单词分割
-```
+```Bash
 name="Alice"
 echo "Hello, $name. Today is $(date +%F)"
 # 输出: Hello, Alice. Today is 2025-10-27
 ```
 ### `'`(单引号 - "强"引用)
 内部的一切都视为字面量 (Literal)，不进行任何展开
-```
+```Bash
 name="Alice"
 echo 'Hello, $name. Today is $(date +%F)'
 # 输出: Hello, $name. Today is $(date +%F)
@@ -120,19 +120,19 @@ sleep 60 &: sleep 60 命令会在后台运行，Shell 会立即返回提示符�
 （4）"$A" == "$B": 测试字符串是否相等 (在 `[` 中建议用 == 或 =，在 `[[` 中用 ==)。
 ### 循环 (for / while)
 1. for
-```
+```Bash
 for i in 1 2 3 4 5; do
   echo "Number: $i"
 done
 ```
 2. while (常用于逐行读取文件)
-```
+```Bash
 while read -r line; do
   echo "Read line: $line"
 done < file.txt
 ```
 ### 函数
-```
+```Bash
 greet() {
   local name="$1"  # $1 是第一个参数, local使其成为局部变量
   echo "Hello, $name"
@@ -142,7 +142,7 @@ greet "Alice"
 ```
 ## 示例
 一个简单的备份脚本
-```
+```Bash
 #!/bin/bash
 # 备份脚本：将指定目录压缩并加上时间戳
 # --- 变量定义 ---
