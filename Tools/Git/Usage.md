@@ -6,7 +6,8 @@ feat(folder name): message
 1. 在项目的根目录新建 `.gitattributes` 文件
 2. 添加
 ```
-Makefile linguist-generated=true
-CMakeLists.txt linguist-generated=true
-*.cmake linguist-generated=true
+*.txt linguist-language=C++
+*.cmake linguist-language=C++
+*.make linguist-language=C++
+Makefile linguist-language=C++
 ```
